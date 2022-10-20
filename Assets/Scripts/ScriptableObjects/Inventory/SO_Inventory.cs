@@ -71,7 +71,7 @@ public class SO_Inventory : ScriptableObject
         {
             // Item is stackable.
             AddStackableItem(item, quantity);
-
+            InformAboutChange();
         }
         
         return quantity;

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aad7a54c4283af4b9789dbddfa8fb99, type: 3}
   m_Name: Yummy Berry
   m_EditorClassIdentifier: 
-  <IsStackable>k__BackingField: 0
-  <MaxStackSize>k__BackingField: 1
+  <IsStackable>k__BackingField: 1
+  <MaxStackSize>k__BackingField: 5
   <ID>k__BackingField: 1
   <ItemImage>k__BackingField: {fileID: 2141370525, guid: 0796c44dec6f136418e1ae1b4506e85c, type: 3}
   <Description>k__BackingField: 

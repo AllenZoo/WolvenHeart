@@ -9,22 +9,21 @@ public class SO_Inventory : ScriptableObject
 
     [SerializeField] private List<InventoryItem> inventoryItems;
 
-    [SerializeField] public int Size { get; private set; }
+    [field: SerializeField] public int Size { get; private set; }
 
     public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
 
-    /*
-        Summary: Initializes the scriptable object, filling list of inventory items with empty items. (default)
-        
-     */
+    /*   Summary: Initializes the scriptable object, filling list of inventory items with empty items. (default)   */
     public void Initialize()
     {
+        inventoryItems = new List<InventoryItem>();
         for (int i = 0; i < Size; i++)
         {
             inventoryItems.Add(InventoryItem.GetEmptyInventoryItem());
         }
     }
 
+    /*   Returns the data of the inventory in form of <index, item>  */
     public Dictionary<int, InventoryItem> GetCurrentInventoryState()
     {
         Dictionary<int, InventoryItem> curState = new Dictionary<int, InventoryItem>();
@@ -32,7 +31,6 @@ public class SO_Inventory : ScriptableObject
         for (int i = 0; i < Size; i++)
         {
             curState.Add(i, inventoryItems[i]);
-       
         }
 
         return curState;

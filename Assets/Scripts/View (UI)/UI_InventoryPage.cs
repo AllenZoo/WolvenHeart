@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UI_InventoryPage : MonoBehaviour
 {
-    [SerializeField] private List<UI_InventoryItem> uiItems;
+
     [SerializeField] private UI_InventoryItem uiItemPfb;
     [SerializeField] private RectTransform contentPanel;
 
@@ -13,11 +13,12 @@ public class UI_InventoryPage : MonoBehaviour
     public event Action<int> OnStartDragging;
     public event Action<int, int> OnSwapItems;
 
+    private List<UI_InventoryItem> uiItems = new List<UI_InventoryItem>();
     private int indexOfCurSelectedItem = -1;
 
     public void Start()
     {
-        uiItems = new List<UI_InventoryItem>();
+        //uiItems = new List<UI_InventoryItem>();
     }
 
     public void InitInventoryUI(int inventorySize)
@@ -33,30 +34,48 @@ public class UI_InventoryPage : MonoBehaviour
             uiItem.OnItemDroppedOn += HandleSwap;
             uiItem.OnItemEndDrag += HandleEndDrag;
             uiItem.OnRightMouseBtnClick += HandleDisplayRightClickOptions;
+
+
         }
 
     }
 
-    public void SetUIItemData(int index, Sprite sprite, int quantity, int count)
+    public void UpdateData(int index, Sprite sprite, int quantity)
     {
+        //Debug.Log("Updating UI");
         if (uiItems.Count > index)
         {
-            uiItems[index].SetItem(sprite, quantity, count);
+            uiItems[index].SetItem(sprite, quantity);
         }
         
     }
 
-    public void ResetUIItemData()
+    public void ResetAllItems()
     {
-        for (int i = 0; i < uiItems.Count; i++)
+        foreach (var item in uiItems)
         {
-            uiItems[i].ResetItem();
+            item.ResetData();
+            item.DeSelect();
         }
+    }
+
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
     }
 
     public void Hide()
     {
         this.gameObject.SetActive(false);
+    }
+
+    private void DeslsectAllItems()
+    {
+        foreach (UI_InventoryItem item in uiItems)
+        {
+            item.DeSelect();
+        }
     }
 
     private void HandleDisplayRightClickOptions(UI_InventoryItem obj)
@@ -73,8 +92,8 @@ public class UI_InventoryPage : MonoBehaviour
     private void HandleSwap(UI_InventoryItem uiItem)
     {
 
-        //int index = uiItems.IndexOf(uiItem);
-        int index = uiItem.index;
+        int index = uiItems.IndexOf(uiItem);
+        //int index = uiItem.index;
         Debug.Log("swapping items! index1 : " + index  + " index2: " + indexOfCurSelectedItem);
         if (indexOfCurSelectedItem == -1) return;
 
@@ -95,8 +114,8 @@ public class UI_InventoryPage : MonoBehaviour
 
     private void HandleBeginDrag(UI_InventoryItem uiItem)
     {
-        /*int index = uiItems.IndexOf(uiItem);*/
-        int index = uiItem.index;
+        int index = uiItems.IndexOf(uiItem);
+        //int index = uiItem.index;
         if (index == -1) return;
 
         indexOfCurSelectedItem = index;

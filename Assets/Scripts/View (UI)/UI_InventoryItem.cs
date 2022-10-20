@@ -22,9 +22,10 @@ public class UI_InventoryItem : MonoBehaviour, IPointerClickHandler,
             OnItemDroppedOn, OnItemBeginDrag, OnItemEndDrag,
             OnRightMouseBtnClick;
 
-    public void Start()
+    public void Awake()
     {
-        border.enabled = false;
+        ResetData();
+        DeSelect();
     }
 
     public void Select()
@@ -37,18 +38,17 @@ public class UI_InventoryItem : MonoBehaviour, IPointerClickHandler,
         border.enabled = false;
     }
 
-    public void ResetItem()
+    public void ResetData()
     {
-        isEmpty = true;
         itemImage.gameObject.SetActive(false);
+        isEmpty = true;
     }
 
     public void SetItem(Sprite sprite, int quantity)
     {
         itemImage.gameObject.SetActive(true);
-
         itemImage.sprite = sprite;
-        numText.text = quantity.ToString();
+        numText.text = quantity + "";
         isEmpty = false;
     }
 
@@ -75,7 +75,8 @@ public class UI_InventoryItem : MonoBehaviour, IPointerClickHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging!");
+        //Debug.Log("Dragging!");
+        if (isEmpty) return;
         OnItemBeginDrag?.Invoke(this);
     }
 

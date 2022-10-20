@@ -28,9 +28,10 @@ public class SO_Inventory : ScriptableObject
     {
         Dictionary<int, InventoryItem> curState = new Dictionary<int, InventoryItem>();
 
-        for (int i = 0; i < Size; i++)
+        for (int i = 0; i < inventoryItems.Count; i++)
         {
-            curState.Add(i, inventoryItems[i]);
+            if (inventoryItems[i].IsEmpty) continue;
+            curState[i] = inventoryItems[i];
         }
 
         return curState;

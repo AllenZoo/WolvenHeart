@@ -35,15 +35,12 @@ public class InventoryController : MonoBehaviour
 
     private void HandleInventoryUpdate(Dictionary<int, InventoryItem> obj)
     {
-        Debug.Log("Updating inventory from controller!");
-        int count = 0;
-        UIInventoryPage.ResetUIItemData();
+        
+        UIInventoryPage.ResetAllItems();
         foreach (var item in obj)
         {
-            if (item.Value.IsEmpty) continue;
-            // item.key is index, item.value is InventoryItem to be converted into ui inventory item
-            UIInventoryPage.SetUIItemData(item.Key, item.Value.item.ItemImage, item.Value.quantity, count);
-            count++;
+            //Debug.Log("Updating inventory from controller!");
+            UIInventoryPage.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
         }
     }
 
@@ -53,6 +50,12 @@ public class InventoryController : MonoBehaviour
         Debug.Log("SO Inventory size: " + size);
         UIInventoryPage.InitInventoryUI(size);
         UIInventoryPage.OnSwapItems += HandleSwapItems;
+        UIInventoryPage.OnStartDragging += HandleDragging;
+    }
+
+    private void HandleDragging(int obj)
+    {
+        // TODO: create dragged item
     }
 
     private void HandleSwapItems(int index1, int index2)

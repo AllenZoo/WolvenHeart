@@ -14965,8 +14965,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 734.38}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_SizeDelta: {x: 0, y: 697.8546}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1365286268
 MonoBehaviour:
@@ -14988,8 +14988,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 10, y: 10}
+  m_CellSize: {x: 65, y: 65}
+  m_Spacing: {x: 30, y: 30}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1383180493
@@ -15236,7 +15236,6 @@ MonoBehaviour:
   uiItems: []
   uiItemPfb: {fileID: 2191838165649216991, guid: ec4634f190a2c0a4b877f7a4653b0238, type: 3}
   contentPanel: {fileID: 1365286267}
-  ready: 0
 --- !u!1 &1516273179
 GameObject:
   m_ObjectHideFlags: 0
@@ -16521,8 +16520,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672467552}
   m_HandleRect: {fileID: 1672467551}
   m_Direction: 2
-  m_Value: 0.99999976
-  m_Size: 0.6808464
+  m_Value: 0.9999997
+  m_Size: 0.71648157
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

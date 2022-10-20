@@ -14,7 +14,6 @@ public class UI_InventoryPage : MonoBehaviour
     public event Action<int, int> OnSwapItems;
 
     private int indexOfCurSelectedItem = -1;
-    public bool ready = false;
 
     public void Start()
     {
@@ -35,7 +34,7 @@ public class UI_InventoryPage : MonoBehaviour
             uiItem.OnItemEndDrag += HandleEndDrag;
             uiItem.OnRightMouseBtnClick += HandleDisplayRightClickOptions;
         }
-        ready = true;
+
     }
 
     public void SetUIItemData(int index, Sprite sprite, int quantity, int count)

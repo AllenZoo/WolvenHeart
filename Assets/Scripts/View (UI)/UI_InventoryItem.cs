@@ -12,6 +12,8 @@ public class UI_InventoryItem : MonoBehaviour, IPointerClickHandler,
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI numText;
     [SerializeField] private Image border;
+    [SerializeField] private Image container;
+
     public bool isEmpty = true;
 
     public int index;

@@ -9,6 +9,8 @@ public class UI_InventoryPage : MonoBehaviour
     [SerializeField] private UI_InventoryItem uiItemPfb;
     [SerializeField] private RectTransform contentPanel;
 
+    [SerializeField] private MouseFollower itemFollower;
+
 
     public event Action<int> OnStartDragging;
     public event Action<int, int> OnSwapItems;
@@ -16,9 +18,10 @@ public class UI_InventoryPage : MonoBehaviour
     private List<UI_InventoryItem> uiItems = new List<UI_InventoryItem>();
     private int indexOfCurSelectedItem = -1;
 
-    public void Start()
+    public void Awake()
     {
-        //uiItems = new List<UI_InventoryItem>();
+        //Hide();
+        itemFollower.Toggle(false);
     }
 
     public void InitInventoryUI(int inventorySize)
@@ -59,7 +62,6 @@ public class UI_InventoryPage : MonoBehaviour
         }
     }
 
-
     public void Show()
     {
         gameObject.SetActive(true);
@@ -70,7 +72,13 @@ public class UI_InventoryPage : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    private void DeslsectAllItems()
+    public void CreateDraggedItem(Sprite sprite, int quantity)
+    {
+        itemFollower.Toggle(true);
+        itemFollower.SetData(sprite, quantity);
+    }
+
+    private void DeselectAllItems()
     {
         foreach (UI_InventoryItem item in uiItems)
         {
@@ -86,7 +94,14 @@ public class UI_InventoryPage : MonoBehaviour
     private void HandleEndDrag(UI_InventoryItem uiItem)
     {
         // TODO: 
+        ResetDraggedItem();
+    }
+
+    private void ResetDraggedItem()
+    {
+        itemFollower.Toggle(false);
         indexOfCurSelectedItem = -1;
+
     }
 
     private void HandleSwap(UI_InventoryItem uiItem)

@@ -41,6 +41,7 @@ public class UI_InventoryItem : MonoBehaviour, IPointerClickHandler,
     public void ResetData()
     {
         itemImage.gameObject.SetActive(false);
+        numText.text = "";
         isEmpty = true;
     }
 

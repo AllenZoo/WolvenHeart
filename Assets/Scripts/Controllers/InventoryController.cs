@@ -53,9 +53,13 @@ public class InventoryController : MonoBehaviour
         UIInventoryPage.OnStartDragging += HandleDragging;
     }
 
-    private void HandleDragging(int obj)
+    private void HandleDragging(int itemIndex)
     {
-        // TODO: create dragged item
+        InventoryItem item = SOInventory.GetItemAt(itemIndex);
+
+        if (item.IsEmpty) return;
+
+        UIInventoryPage.CreateDraggedItem(item.item.ItemImage, item.quantity);
     }
 
     private void HandleSwapItems(int index1, int index2)

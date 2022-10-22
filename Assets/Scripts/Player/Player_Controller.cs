@@ -33,7 +33,9 @@ public class Player_Controller : MonoBehaviour
 
     private void HandleMovementRequest(float x, float y)
     {
+        Vector3 movementVector = new Vector3(x, y, 0).normalized;
         movement.MovePlayer(x, y, stats.GetMovementSpeed());
+        animator.HandlePlayerMovement(movementVector);
     }
 
     private void PrepareMovement()

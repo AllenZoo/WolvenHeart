@@ -7,6 +7,7 @@ using UnityEngine.UI;
 [Serializable]
 public abstract class SO_Item : ScriptableObject
 {
+    [field: SerializeField] public string Name { get; set; }
     [field: SerializeField] public bool IsStackable { get; set; }
     [field: SerializeField] int MaxStackSize { get; set; } = 1;
     [field: SerializeField] public int ID { get; set; }

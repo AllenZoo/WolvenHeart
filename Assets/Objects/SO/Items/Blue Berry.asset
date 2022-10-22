@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aad7a54c4283af4b9789dbddfa8fb99, type: 3}
   m_Name: Blue Berry
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Blue Berry
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <ID>k__BackingField: 0
   <ItemImage>k__BackingField: {fileID: -1520717135, guid: 09b8429aba7940c4abe650d0f8189600, type: 3}
-  <Description>k__BackingField: 
+  <Description>k__BackingField: A very yummy blue berry

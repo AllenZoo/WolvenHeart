@@ -10,9 +10,10 @@ public class UI_InventoryPage : MonoBehaviour
     [SerializeField] private RectTransform contentPanel;
 
     [SerializeField] private MouseFollower itemFollower;
+    [SerializeField] private UI_Inventory_PopUp popUpWindow;
 
 
-    public event Action<int> OnStartDragging;
+    public event Action<int> OnStartDragging, OnPopUpRequested;
     public event Action<int, int> OnSwapItems;
 
     private List<UI_InventoryItem> uiItems = new List<UI_InventoryItem>();
@@ -20,7 +21,7 @@ public class UI_InventoryPage : MonoBehaviour
 
     public void Awake()
     {
-        //Hide();
+        Hide();
         itemFollower.Toggle(false);
     }
 
@@ -45,7 +46,6 @@ public class UI_InventoryPage : MonoBehaviour
 
     public void UpdateData(int index, Sprite sprite, int quantity)
     {
-        //Debug.Log("Updating UI");
         if (uiItems.Count > index)
         {
             uiItems[index].SetItem(sprite, quantity);
@@ -72,10 +72,17 @@ public class UI_InventoryPage : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    /* Summary: Creates a mouse follower dragged item! */
     public void CreateDraggedItem(Sprite sprite, int quantity)
     {
         itemFollower.Toggle(true);
         itemFollower.SetData(sprite, quantity);
+    }
+
+    /* Summary: Creates a pop up at item */
+    public void CreatePopUp(String name, String description)
+    {
+        Debug.Log("creating a pop up that displays item name: " + name + " and item description: " + description);
     }
 
     private void DeselectAllItems()
@@ -86,47 +93,50 @@ public class UI_InventoryPage : MonoBehaviour
         }
     }
 
+    /* Called when UI item is right clicked*/
     private void HandleDisplayRightClickOptions(UI_InventoryItem obj)
     {
         // TODO: Generate Clickable Actions
     }
 
+    /* Called when drag action stops.
+     * Summary: calls ResetDraggedItem  */
     private void HandleEndDrag(UI_InventoryItem uiItem)
     {
         // TODO: 
         ResetDraggedItem();
     }
 
+    /* Summary: Resets dragged item index and hides mouse follower */
     private void ResetDraggedItem()
     {
         itemFollower.Toggle(false);
         indexOfCurSelectedItem = -1;
-
     }
 
+    /* Called when something is dropped on top of a UI Item
+     * Summary: tells controller to swap the items in SO Inventory */
     private void HandleSwap(UI_InventoryItem uiItem)
     {
-
         int index = uiItems.IndexOf(uiItem);
-        //int index = uiItem.index;
-        Debug.Log("swapping items! index1 : " + index  + " index2: " + indexOfCurSelectedItem);
         if (indexOfCurSelectedItem == -1) return;
-
-
-        Debug.Log("actually swapping items!");
         OnSwapItems?.Invoke(index, indexOfCurSelectedItem);
-
     }
 
+    /*  Called when UI Item is clicked 
+     *  Summary: Displays border around selected item   */
     private void HandleItemSelection(UI_InventoryItem uiItem)
     {
         // TODO: Generate pop-up window that displays description.
         int index = uiItems.IndexOf(uiItem);
         if (index == -1)
             return;
-        // OnPopUpRequested?.Invoke(index)
+        OnPopUpRequested?.Invoke(index);
     }
 
+    /*  Called when UI Item begins being dragged 
+     *  Summary: Invokes a call to controller that creates a mouse follower
+     *           of the item being dragged                                */
     private void HandleBeginDrag(UI_InventoryItem uiItem)
     {
         int index = uiItems.IndexOf(uiItem);

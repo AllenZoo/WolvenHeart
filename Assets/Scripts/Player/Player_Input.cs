@@ -8,14 +8,20 @@ public class Player_Input : MonoBehaviour
 
     // Request Move x and y. (normalized)
     public event Action<float, float> OnRequestMove;
-    // Start is called before the first frame update
 
-    public void FixedUpdate()
+    public event Action OnRequestInteract;
+
+    private void FixedUpdate()
     {
         HandleMovementInput();
     }
 
-    public void HandleMovementInput()
+    private void Update()
+    {
+        HandleInteractInput();
+    }
+
+    private void HandleMovementInput()
     {
         float yInput =  Input.GetAxis("Vertical");
         float xInput = Input.GetAxis("Horizontal");
@@ -23,6 +29,16 @@ public class Player_Input : MonoBehaviour
         yInput *= Time.fixedDeltaTime;
         xInput *= Time.fixedDeltaTime;
 
+
+
         OnRequestMove?.Invoke(xInput, yInput);
+    }
+
+    private void HandleInteractInput()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            OnRequestInteract?.Invoke();
+        }
     }
 }

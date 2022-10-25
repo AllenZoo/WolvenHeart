@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(Player_Movement), typeof(Player_Input), typeof(Player_Animation))]
-[RequireComponent(typeof(Player_Stats), typeof(Player_Input), typeof(Player_Animation))]
+[RequireComponent(typeof(Player_Stats), typeof(Player_CollisionManager), typeof(Player_Animation))]
 public class Player_Controller : MonoBehaviour
 {
     private Player_Movement movement;
     private Player_Input input;
     private Player_Animation animator;
     private Player_Stats stats;
+    private Player_CollisionManager cm;
 
     public void Awake()
     {
@@ -17,6 +18,7 @@ public class Player_Controller : MonoBehaviour
         input = GetComponent<Player_Input>();
         animator = GetComponent<Player_Animation>();
         stats = GetComponent<Player_Stats>();
+        cm = GetComponent<Player_CollisionManager>();
     }
 
     public void Start()
@@ -29,6 +31,12 @@ public class Player_Controller : MonoBehaviour
     private void PrepareInput()
     {
         input.OnRequestMove += HandleMovementRequest;
+        input.OnRequestInteract += HandleInteraction;
+    }
+
+    private void HandleInteraction()
+    {
+        cm.Interact();
     }
 
     private void HandleMovementRequest(float x, float y)

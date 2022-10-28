@@ -807,7 +807,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 968282027}
-  - {fileID: 1114073088}
   - {fileID: 1302414014}
   m_Father: {fileID: 1352032606}
   m_RootOrder: -1
@@ -14328,12 +14327,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 617508914}
-  m_Father: {fileID: 251763890}
+  m_Father: {fileID: 1438672591}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -300, y: -250}
+  m_AnchoredPosition: {x: -120.58603, y: -565.3171}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114073089
@@ -15361,6 +15360,7 @@ RectTransform:
   m_Children:
   - {fileID: 1445575671}
   - {fileID: 2105778657}
+  - {fileID: 1114073088}
   m_Father: {fileID: 1324081177}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.112}
@@ -15423,7 +15423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiItemPfb: {fileID: 2191838165649216991, guid: ec4634f190a2c0a4b877f7a4653b0238, type: 3}
   contentPanel: {fileID: 1365286267}
-  itemFollower: {fileID: 811007630}
+  itemFollower: {fileID: 1114073089}
   popUpWindow: {fileID: 138856548}
 --- !u!1 &1529874076
 GameObject:

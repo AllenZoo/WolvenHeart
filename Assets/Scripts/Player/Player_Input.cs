@@ -11,6 +11,8 @@ public class Player_Input : MonoBehaviour
 
     public event Action OnRequestInteract;
 
+    public event Action<KeyCode> OnRequestAbility;
+
     private void FixedUpdate()
     {
         HandleMovementInput();
@@ -19,6 +21,7 @@ public class Player_Input : MonoBehaviour
     private void Update()
     {
         HandleInteractInput();
+        HandleAbilityInput();
     }
 
     private void HandleMovementInput()
@@ -28,8 +31,6 @@ public class Player_Input : MonoBehaviour
 
         yInput *= Time.fixedDeltaTime;
         xInput *= Time.fixedDeltaTime;
-
-
 
         OnRequestMove?.Invoke(xInput, yInput);
     }
@@ -41,4 +42,13 @@ public class Player_Input : MonoBehaviour
             OnRequestInteract?.Invoke();
         }
     }
+
+    private void HandleAbilityInput()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            OnRequestAbility?.Invoke(KeyCode.K);
+        }
+    }
+
 }

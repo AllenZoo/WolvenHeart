@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent (typeof(Player_Movement), typeof(Player_Input), typeof(Player_Animation))]
 [RequireComponent(typeof(Player_Stats), typeof(Player_CollisionManager), typeof(Player_Animation))]
 [RequireComponent(typeof(Player_AbilityHandler))]
+
 public class Player_Controller : MonoBehaviour
 {
     private Player_Movement movement;
@@ -14,7 +15,9 @@ public class Player_Controller : MonoBehaviour
     private Player_CollisionManager cm;
     private Player_AbilityHandler ah;
 
-    /* INIT ***********************************************************/
+    /* -------------------------------------------------------------------------- */
+    /*                                    INIT                                    */
+    /* -------------------------------------------------------------------------- */
     public void Awake()
     {
         movement = GetComponent<Player_Movement>();
@@ -30,28 +33,53 @@ public class Player_Controller : MonoBehaviour
         PrepareMovement();
         PrepareAbilities();
     }
-    /********************************************************************/
 
+    /* -------------------------------------------------------------------------- */
+
+    /// <summary>
+    /// Prepares input requests.
+    /// </summary>
     private void PrepareInput()
     {
         input.OnRequestMove += HandleMovementRequest;
         input.OnRequestInteract += HandleInteraction;
         input.OnRequestAbility += HandleAbilityRequest;
     }
+
+    /// <summary>
+    /// Handles collision object interactions.
+    /// </summary>
     private void HandleInteraction()
     {
         cm.Interact();
     }
 
-    /* ABILITIES ********************************************************/
+    /* -------------------------------------------------------------------------- */
+
+    /* -------------------------------------------------------------------------- */
+    /*                                  ABILITIES                                 */
+    /* -------------------------------------------------------------------------- */
+    /// <summary>
+    /// Prepares ability requests.
+    /// </summary>
     private void PrepareAbilities()
     {
         ah.OnAbilityActionRequest += HandleAbilityAction;
     }
+
+    /// <summary>
+    /// Handler for requests to use an ability on key.
+    /// </summary>
+    /// <param name="k">trigger key</param>
     private void HandleAbilityRequest(KeyCode k)
     {
         ah.TryTriggerAbility(k);
     }
+
+    /// <summary>
+    /// Handler for ability actions.
+    /// </summary>
+    /// <param name="abilityAction">ability action</param>
     private void HandleAbilityAction(AbilityAction abilityAction)
     {
         switch (abilityAction.actionType)
@@ -67,9 +95,17 @@ public class Player_Controller : MonoBehaviour
                 break;
         }
     }
-    /********************************************************************/
 
-    /* MOVEMENT ********************************************************/
+    /* -------------------------------------------------------------------------- */
+
+    /* -------------------------------------------------------------------------- */
+    /*                                  MOVEMENT                                  */
+    /* -------------------------------------------------------------------------- */
+    /// <summary>
+    /// Handles requests for player movement (both physics and animation).
+    /// </summary>
+    /// <param name="x">+right, -left</param>
+    /// <param name="y">+up, -down</param>
     private void HandleMovementRequest(float x, float y)
     {
         Vector3 movementVector = new Vector3(x, y, 0).normalized;
@@ -77,12 +113,20 @@ public class Player_Controller : MonoBehaviour
         animator.HandlePlayerMovement(movementVector);
     }
 
-    // Requests Player to dash _range_ pixels forwards or backwards depending on _dir_  (dir = 1 -> go forwards, dir = -1 -> go backwards)
+    /// <summary>
+    /// Requests player to dash <paramref name="range"/> pixels
+    /// forwards or backwards depending on <paramref name="dir"/>.
+    /// </summary>
+    /// <param name="range">number of pixels to dash forward</param>
+    /// <param name="dir">dash direction (forward = 1, backward = -1)</param>
     private void HandleDashRequest(float range, float dir)
     {
         movement.Dash(range, dir);
     }
 
+    /// <summary>
+    /// Prepares movements.
+    /// </summary>
     private void PrepareMovement()
     {
         

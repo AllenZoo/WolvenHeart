@@ -12,6 +12,9 @@ public class Player_AbilityHandler : MonoBehaviour
 
     public Action<AbilityAction> OnAbilityActionRequest;
 
+    /* -------------------------------------------------------------------------- */
+    /*                                    INIT                                    */
+    /* -------------------------------------------------------------------------- */
     private void Awake()
     {
         abilityDict = new Dictionary<KeyCode, SO_Ability>();
@@ -26,6 +29,12 @@ public class Player_AbilityHandler : MonoBehaviour
         }
     }
 
+    /* -------------------------------------------------------------------------- */
+
+    /// <summary>
+    /// Tests if the trigger key corresponds to an ability.
+    /// </summary>
+    /// <param name="input">trigger key</param>
     public void TryTriggerAbility(KeyCode input)
     {
         if (abilityDict.ContainsKey(input))

@@ -13,6 +13,9 @@ public class Player_Input : MonoBehaviour
 
     public event Action<KeyCode> OnRequestAbility;
 
+    /* -------------------------------------------------------------------------- */
+    /*                                CALL UPDATES                                */
+    /* -------------------------------------------------------------------------- */
     private void FixedUpdate()
     {
         HandleMovementInput();
@@ -24,6 +27,10 @@ public class Player_Input : MonoBehaviour
         HandleAbilityInput();
     }
 
+    /* -------------------------------------------------------------------------- */
+    /// <summary>
+    /// Handles movement inputs (WASD, Arrow Keys, etc.).
+    /// </summary>
     private void HandleMovementInput()
     {
         float yInput =  Input.GetAxis("Vertical");
@@ -34,7 +41,10 @@ public class Player_Input : MonoBehaviour
 
         OnRequestMove?.Invoke(xInput, yInput);
     }
-
+    
+    /// <summary>
+    /// Handles object interact inputs.
+    /// </summary>
     private void HandleInteractInput()
     {
         if (Input.GetKeyDown(KeyCode.F))
@@ -43,11 +53,14 @@ public class Player_Input : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles ability inputs.
+    /// </summary>
     private void HandleAbilityInput()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            OnRequestAbility?.Invoke(KeyCode.K);
+            OnRequestAbility?.Invoke(KeyCode.Space);
         }
     }
 

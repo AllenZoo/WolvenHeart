@@ -8,7 +8,9 @@ public class Player_CollisionManager : MonoBehaviour
 {
     private IInteractable curInteractable;
 
-    /*  Interact with current interactable object if it exists. Else do nothing */
+    /// <summary>
+    /// Interact with current interactable object if it exists, else do nothing.
+    /// </summary>
     public void Interact()
     {
         if (curInteractable != null)
@@ -21,6 +23,10 @@ public class Player_CollisionManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Triggered when collider enters another collider.
+    /// </summary>
+    /// <param name="collider">collider of collided object</param>
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.GetComponent<IInteractable>() != null)
@@ -30,6 +36,10 @@ public class Player_CollisionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Triggered when collider exits another collider.
+    /// </summary>
+    /// <param name="collider">collider of collided object</param>
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.GetComponent<IInteractable>() != null)
@@ -38,6 +48,4 @@ public class Player_CollisionManager : MonoBehaviour
             curInteractable = null;
         }
     }
-
-    
 }

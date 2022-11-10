@@ -14628,8 +14628,6 @@ MonoBehaviour:
   m_HandleRect: {fileID: 369088635}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
-  m_Value: 0
   m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -16215,7 +16213,6 @@ GameObject:
   - component: {fileID: 1901378511}
   - component: {fileID: 1901378514}
   - component: {fileID: 1901378513}
-  - component: {fileID: 1901378512}
   - component: {fileID: 1901378515}
   m_Layer: 0
   m_Name: Player

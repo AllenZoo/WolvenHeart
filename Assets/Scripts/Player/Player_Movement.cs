@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player_Movement : MonoBehaviour
 {
+    private Player_Animation playerAnimation;
     private Rigidbody2D rb;
 
     // Set default dir to downwards (0, -1)
@@ -15,6 +16,7 @@ public class Player_Movement : MonoBehaviour
 
     private void Awake()
     {
+        playerAnimation = GetComponent<Player_Animation>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -42,12 +44,13 @@ public class Player_Movement : MonoBehaviour
         {
             // dash forward
             Debug.Log("Dashing forwards " + range + " pixels");
-            this.transform.Translate(new Vector3(this.transform.position.x, this.transform.position.y - 1, 0));
+            this.transform.Translate(new Vector3(playerAnimation.getXDir(), playerAnimation.getYDir(), 0));
             //rb.AddForce(new Vector2(range * dir, 0f), ForceMode2D.Impulse);
 
         } else if (dir == -1)
         {
             // dash backwards
+            this.transform.Translate(new Vector3(-1 * playerAnimation.getXDir(), -1 * playerAnimation.getYDir(), 0));
         }
     }
 }

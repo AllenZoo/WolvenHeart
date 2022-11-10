@@ -17,9 +17,25 @@ public class Player_Animation : MonoBehaviour
         HandlePlayerMovement(vector.x, vector.y);
     }
 
-    public void HandlePlayerMovement(float x, float y) 
+    public void HandlePlayerMovement(float x, float y)
     {
         animator.SetFloat("xDir", x);
         animator.SetFloat("yDir", y);
+
+        if (x != 0 || y != 0)
+        {
+            animator.SetFloat("curX", (x == 0) ? 0 : Mathf.Sign(x));
+            animator.SetFloat("curY", Mathf.Sign(y));
+        }
+    }
+
+    public float getXDir()
+    {
+        return animator.GetFloat("xDir");
+    }
+
+    public float getYDir()
+    {
+        return animator.GetFloat("yDir");
     }
 }

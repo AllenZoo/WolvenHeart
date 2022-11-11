@@ -11,7 +11,7 @@ public class Player_Movement : MonoBehaviour
     // Set default dir to downwards (0, -1)
     private Vector2 curDir = Vector2.down;
 
-    // Tracks the last dir where player faced
+    // Tracks the last dir where player faced and vector values contained 1
     private Vector2 lastDir = Vector2.down;
 
     /* -------------------------------------------------------------------------- */

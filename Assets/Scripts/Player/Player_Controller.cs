@@ -86,8 +86,9 @@ public class Player_Controller : MonoBehaviour
         {
             case AbilityActionType.DashAbility:
                 Debug.Log("Handling Dash Ability");
+
                 // TODO: Make this code better so we don't have to cast
-                DashAbilityAction ab = (DashAbilityAction)abilityAction;
+                DashAbilityAction ab = (DashAbilityAction) abilityAction;
                 HandleDashRequest(ab.range, ab.dir);
                 break;
             default:

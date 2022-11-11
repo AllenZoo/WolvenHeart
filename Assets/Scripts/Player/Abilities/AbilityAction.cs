@@ -10,4 +10,5 @@ public class AbilityAction
 public enum AbilityActionType
 {
     DashAbility,
+    BuffAbility,
 }

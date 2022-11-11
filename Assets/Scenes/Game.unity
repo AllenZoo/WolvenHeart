@@ -16348,13 +16348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d76516346ebbe44abe1a711f94757b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
-  sp: 100
-  str: 1
-  agl: 1
-  def: 1
-  reg: 1
-  rec: 1
+  stats: {fileID: 11400000, guid: 5493deffd570d784c91d8012cff01fc6, type: 2}
 --- !u!95 &1901378511
 Animator:
   serializedVersion: 4

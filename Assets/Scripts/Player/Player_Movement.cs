@@ -5,13 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player_Movement : MonoBehaviour
 {
-    private Player_Animation playerAnimation;
     private Rigidbody2D rb;
 
     // Set default dir to downwards (0, -1)
     private Vector2 curDir = Vector2.down;
 
-    // Tracks the last dir where player faced and vector values contained 1
+    // Tracks the last dir where player faced while moving
     private Vector2 lastDir = Vector2.down;
 
     /* -------------------------------------------------------------------------- */
@@ -19,7 +18,6 @@ public class Player_Movement : MonoBehaviour
     /* -------------------------------------------------------------------------- */
     private void Awake()
     {
-        playerAnimation = GetComponent<Player_Animation>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -39,14 +37,10 @@ public class Player_Movement : MonoBehaviour
     /// <param name="speed">multiplier</param>
     public void MovePlayer(float x, float y, float speed)
     {
-        if (x == 1 || y == 1)
+        if (x != 0 || y != 0)
         {
-            lastDir = new Vector2(x, y);
-        } else if (x == 0 && y == 0)
-        {
-            curDir = lastDir;
+            lastDir = new Vector2(x, y).normalized;
         }
-
         float moveX = x * speed;
         float moveY = y * speed;
         this.transform.Translate(new Vector3(moveX, moveY, 0));
@@ -63,14 +57,14 @@ public class Player_Movement : MonoBehaviour
         if (dir == 1)
         {
             // dash forward
-            Debug.Log("Dashing forwards " + range + " pixels");
-            MovePlayer(playerAnimation.getXDir(), playerAnimation.getYDir(), range);
-            // rb.AddForce(new Vector2(range * dir, 0f), ForceMode2D.Impulse);
+            Debug.Log("Dashing forwards " + range + " pixels" + " in dir: (" + lastDir.x*dir + ", " + lastDir.y*dir + ")");
+            MovePlayer(lastDir.x * dir, lastDir.y * dir, range);
 
         } else if (dir == -1)
         {
             // dash backwards
-            MovePlayer(-1 * playerAnimation.getXDir(), -1 * playerAnimation.getYDir(), range);
+            Debug.Log("Dashing backwards " + range + " pixels" + " in dir: (" + lastDir.x*dir + ", " + lastDir.y*dir + ")");
+            MovePlayer(lastDir.x * dir, lastDir.y * dir, range);
         } else
         {
             Debug.LogWarning("Invalid dir param");

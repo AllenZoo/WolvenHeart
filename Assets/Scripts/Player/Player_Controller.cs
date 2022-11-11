@@ -78,7 +78,7 @@ public class Player_Controller : MonoBehaviour
     /// <param name="k">trigger key</param>
     private void HandleAbilityRequest(KeyCode k)
     {
-        ah.TryTriggerAbility(k);
+        ah.TryTriggerAbility(k, stats.GetPlayerStats());
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ public class Player_Controller : MonoBehaviour
 
                 // TODO: Make this code better so we don't have to cast
                 DashAbilityAction ab = (DashAbilityAction) abilityAction;
-                HandleDashRequest(ab.range, ab.dir);
+                HandleDashRequest(ab);
                 break;
             default:
                 Debug.Log("Unimplemented Action type requested");
@@ -130,6 +130,13 @@ public class Player_Controller : MonoBehaviour
         movement.Dash(range, dir);
     }
 
+    private void HandleDashRequest(DashAbilityAction daa)
+    {
+        movement.Dash(daa.range, daa.dir);
+        stats.SpendStamina(daa.cost);
+        ah.StartCooldown(daa.soAbility);
+    }
+
     /// <summary>
     /// Prepares movements.
     /// </summary>
@@ -137,4 +144,22 @@ public class Player_Controller : MonoBehaviour
     {
         
     }
+
+
+
+    /* -------------------------------------------------------------------------- */
+
+
+    /* -------------------------------------------------------------------------- */
+    /*                                  STATS                                     */
+    /* -------------------------------------------------------------------------- */
+
+    private void HandleAbilityCost()
+    {
+
+    }
+
+
+
+    /* -------------------------------------------------------------------------- */
 }

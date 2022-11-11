@@ -16209,11 +16209,11 @@ GameObject:
   - component: {fileID: 1901378512}
   - component: {fileID: 1901378506}
   - component: {fileID: 1901378510}
+  - component: {fileID: 1901378515}
   - component: {fileID: 1901378505}
   - component: {fileID: 1901378511}
   - component: {fileID: 1901378514}
   - component: {fileID: 1901378513}
-  - component: {fileID: 1901378515}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -16348,7 +16348,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d76516346ebbe44abe1a711f94757b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 5493deffd570d784c91d8012cff01fc6, type: 2}
+  soStats: {fileID: 11400000, guid: 5493deffd570d784c91d8012cff01fc6, type: 2}
+  pStats:
+    maxHP: 100
+    maxSP: 100
+    str: 1
+    agl: 1
+    def: 1
+    reg: 1
+    rec: 1
+    curHP: 0
+    curSP: 0
+    aRec: 1
+    aReg: 1
+    LSTL: 1
+    LUCK: 1
+    PREC: 1
+    CDR: 1
+    APEN: 1
 --- !u!95 &1901378511
 Animator:
   serializedVersion: 4
@@ -16636,8 +16653,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672467552}
   m_HandleRect: {fileID: 1672467551}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

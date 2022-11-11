@@ -5,6 +5,7 @@ using UnityEngine;
 public class AbilityAction
 {
     public AbilityActionType actionType;
+    public SO_Ability soAbility;
 }
 
 public enum AbilityActionType

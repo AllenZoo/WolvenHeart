@@ -13,7 +13,7 @@ public class SO_DashDamageAbility : SO_DamageAbility
 
     public override AbilityAction Trigger()
     {
-        DashAbilityAction dashAbility = new DashAbilityAction(dashRange, dashDir);
+        DashAbilityAction dashAbility = new DashAbilityAction(this);
         return dashAbility;
     }
 }

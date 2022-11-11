@@ -4,56 +4,49 @@ using UnityEngine;
 
 public class Player_Stats : MonoBehaviour
 {
-    [SerializeField] private SO_PlayerStats stats;
+    [SerializeField] private SO_PlayerStats soStats;
+    [SerializeField] private PlayerStats pStats;
+
     /* --------------------------------- STATES -------------------------------- */
     protected bool canRegenHP = true;
     protected bool canRegenSP = true;
 
-    /* ------------------------------ NORMAL STATS ----------------------------- */
-    [SerializeField] protected float curHP;
-    [SerializeField] protected float curSP;
-    protected float maxHP = 100;
-    protected float maxSP = 100;
-    protected float str = 1;
-    protected float agl = 1;
-    protected float def = 1;
-    protected float reg = 1;
-    protected float rec = 1;
-
-    /* ------------------------------ SPECIAL STATS ----------------------------- */
-
-    protected float aRec = 1;
-    protected float aReg = 1;
-    protected float LSTL = 1;
-    protected float LUCK = 1;
-    protected float PREC = 1;
-    protected float CDR = 1;
-    protected float APEN = 1;
 
     /* ---------------------------------- INIT ----------------------------- */
     private void Awake()
     {
-        maxHP = stats.hp;
-        maxSP = stats.sp;
-        str = stats.str;
-        agl = stats.agl;
-        def = stats.def;
-        reg = stats.reg;
-        rec = stats.rec;
+        pStats = new PlayerStats();
 
-        aRec = stats.aRec;
-        aReg = stats.aReg;
-        LSTL = stats.LSTL;
-        LUCK = stats.LUCK;
-        PREC = stats.PREC;
-        CDR = stats.CDR;
-        APEN = stats.APEN;
+        // TODO: move all the initialization into respective classes.
+        pStats.maxHP = soStats.hp;
+        pStats.maxSP = soStats.sp;
+        pStats.str = soStats.str;
+        pStats.agl = soStats.agl;
+        pStats.def = soStats.def;
+        pStats.reg = soStats.reg;
+        pStats.rec = soStats.rec;
+
+        pStats.aRec = soStats.aRec;
+        pStats.aReg = soStats.aReg;
+        pStats.LSTL = soStats.LSTL;
+        pStats.LUCK = soStats.LUCK;
+        pStats.PREC = soStats.PREC;
+        pStats.CDR = soStats.CDR;
+        pStats.APEN = soStats.APEN;
     }
 
     private void Start()
     {
-        curHP = maxHP;
-        curSP = 0;
+        pStats.curHP = pStats.maxHP;
+        pStats.curSP = 0;
+        StartCoroutine(HandleSPRegen());
+    }
+
+    /* -------------------------------- MODIFIERS ------------------------------- */
+    public void SpendStamina(float value)
+    {
+        pStats.curSP -= value;
+        StopAllCoroutines();
         StartCoroutine(HandleSPRegen());
     }
 
@@ -62,7 +55,11 @@ public class Player_Stats : MonoBehaviour
     public float GetMovementSpeed()
     {
         // TODO: implement speed calculator
-        return agl * 5;
+        return pStats.agl * 5;
+    }
+    public PlayerStats GetPlayerStats()
+    {
+        return pStats;
     }
 
     /* --------------------------------- REGEN -------------------------------- */
@@ -75,15 +72,15 @@ public class Player_Stats : MonoBehaviour
     }
     private float GetHPRegenValue()
     {
-        return reg * 5;
+        return pStats.reg * 5;
     }
     private void RecoverHP(float value)
     {
-        curHP += value;
+        pStats.curHP += value;
 
-        if (curHP > maxHP)
+        if (pStats.curHP > pStats.maxHP)
         {
-            curHP = maxHP;
+            pStats.curHP = pStats.maxHP;
         }
     }
 
@@ -96,23 +93,25 @@ public class Player_Stats : MonoBehaviour
     }
     private float GetSPRegenValue()
     {
-        return rec * 5;
+        return pStats.rec * 5;
     }
     private void RecoverSP(float value)
     {
-        curSP += value;
+        pStats.curSP += value;
 
-        if (curSP > maxSP)
+        if (pStats.curSP > pStats.maxSP)
         {
-            curSP = maxSP;
+            pStats.curSP = pStats.maxSP;
         }
     }
     private IEnumerator HandleSPRegen()
     {
-        while (curSP < maxSP)
+        while (pStats.curSP < pStats.maxSP)
         {
             yield return StartCoroutine(RegenSP());
         }
     }
 
+
+    
 }

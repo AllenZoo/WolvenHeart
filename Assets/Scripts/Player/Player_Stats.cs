@@ -38,7 +38,7 @@ public class Player_Stats : MonoBehaviour
     private void Start()
     {
         pStats.curHP = pStats.maxHP;
-        pStats.curSP = 0;
+        pStats.curSP = pStats.maxSP;
         StartCoroutine(HandleSPRegen());
     }
 

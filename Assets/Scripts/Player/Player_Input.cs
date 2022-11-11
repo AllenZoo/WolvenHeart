@@ -61,6 +61,9 @@ public class Player_Input : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnRequestAbility?.Invoke(KeyCode.Space);
+        } else if (Input.GetKeyDown(KeyCode.K))
+        {
+            OnRequestAbility?.Invoke(KeyCode.K);
         }
     }
 

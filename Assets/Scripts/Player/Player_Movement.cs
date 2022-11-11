@@ -71,6 +71,9 @@ public class Player_Movement : MonoBehaviour
         {
             // dash backwards
             MovePlayer(-1 * playerAnimation.getXDir(), -1 * playerAnimation.getYDir(), range);
+        } else
+        {
+            Debug.LogWarning("Invalid dir param");
         }
     }
 }

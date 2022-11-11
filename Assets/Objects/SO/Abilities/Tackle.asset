@@ -17,5 +17,5 @@ MonoBehaviour:
   cost: 0
   cooldown: 0
   damage: 0
-  dashRange: 10
+  dashRange: 2
   dashDir: 1

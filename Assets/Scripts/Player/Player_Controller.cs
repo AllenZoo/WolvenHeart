@@ -95,11 +95,19 @@ public class Player_Controller : MonoBehaviour
                 // TODO: Make this code better so we don't have to cast
                 DashAbilityAction ab = (DashAbilityAction) abilityAction;
                 HandleDashRequest(ab);
+                HandleAbilityCost(ab);
+                HandleAbilityCooldown(ab);
                 break;
             default:
                 Debug.Log("Unimplemented Action type requested");
                 break;
         }
+    }
+
+
+    private void HandleAbilityCooldown(AbilityAction daa)
+    {
+        ah.StartCooldown(daa.soAbility);
     }
 
     /* -------------------------------------------------------------------------- */
@@ -133,8 +141,6 @@ public class Player_Controller : MonoBehaviour
     private void HandleDashRequest(DashAbilityAction daa)
     {
         movement.Dash(daa.range, daa.dir);
-        stats.SpendStamina(daa.cost);
-        ah.StartCooldown(daa.soAbility);
     }
 
     /// <summary>
@@ -153,9 +159,9 @@ public class Player_Controller : MonoBehaviour
     /*                                  STATS                                     */
     /* -------------------------------------------------------------------------- */
 
-    private void HandleAbilityCost()
+    private void HandleAbilityCost(AbilityAction daa)
     {
-
+        stats.SpendStamina(daa.cost);
     }
 
 

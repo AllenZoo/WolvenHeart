@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent (typeof(Player_Movement), typeof(Player_Input), typeof(Player_Animation))]
 [RequireComponent(typeof(Player_Stats), typeof(Player_CollisionManager), typeof(Player_Animation))]
-[RequireComponent(typeof(Player_AbilityHandler))]
+[RequireComponent(typeof(Player_AbilityHandler), typeof(Player_ParticleHandler))]
 
 public class Player_Controller : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class Player_Controller : MonoBehaviour
     private Player_Stats stats;
     private Player_CollisionManager cm;
     private Player_AbilityHandler ah;
+    private Player_ParticleHandler ph;
 
     /* -------------------------------------------------------------------------- */
     /*                                    INIT                                    */
@@ -26,6 +27,7 @@ public class Player_Controller : MonoBehaviour
         stats = GetComponent<Player_Stats>();
         cm = GetComponent<Player_CollisionManager>();
         ah = GetComponent<Player_AbilityHandler>();
+        ph = GetComponent<Player_ParticleHandler>();
     }
     public void Start()
     {
@@ -94,7 +96,7 @@ public class Player_Controller : MonoBehaviour
 
                 // TODO: Make this code better so we don't have to cast
                 DashAbilityAction ab = (DashAbilityAction) abilityAction;
-                HandleDashRequest(ab);
+                StartCoroutine(InvokeDashRequest(ab));
                 break;
             default:
                 Debug.Log("Unimplemented Action type requested");
@@ -107,17 +109,7 @@ public class Player_Controller : MonoBehaviour
     /* -------------------------------------------------------------------------- */
     /*                                  MOVEMENT                                  */
     /* -------------------------------------------------------------------------- */
-    /// <summary>
-    /// Handles requests for player movement (both physics and animation).
-    /// </summary>
-    /// <param name="x">+right, -left</param>
-    /// <param name="y">+up, -down</param>
-    private void HandleMovementRequest(float x, float y)
-    {
-        Vector3 movementVector = new Vector3(x, y, 0).normalized;
-        movement.MovePlayer(x, y, stats.GetMovementSpeed());
-        animator.HandlePlayerMovement(movementVector);
-    }
+    
 
     /// <summary>
     /// Requests player to dash <paramref name="range"/> pixels
@@ -130,11 +122,32 @@ public class Player_Controller : MonoBehaviour
         movement.Dash(range, dir);
     }
 
-    private void HandleDashRequest(DashAbilityAction daa)
+    /* -------------------------------------------------------------------------- */
+
+    /* -------------------------------------------------------------------------- */
+    /*                                 CONTROLLER                                 */
+    /* -------------------------------------------------------------------------- */
+
+    /// <summary>
+    /// Handles requests for player movement (both physics and animation).
+    /// </summary>
+    /// <param name="x">+right, -left</param>
+    /// <param name="y">+up, -down</param>
+    private void HandleMovementRequest(float x, float y)
     {
+        Vector3 movementVector = new Vector3(x, y, 0).normalized;
+        movement.MovePlayer(x, y, stats.GetMovementSpeed());
+        animator.HandlePlayerMovement(movementVector);
+    }
+
+    IEnumerator InvokeDashRequest(DashAbilityAction daa)
+    {
+        ph.SpawnDashParticle(movement.GetDashDir());
         movement.Dash(daa.range, daa.dir);
         stats.SpendStamina(daa.cost);
         ah.StartCooldown(daa.soAbility);
+        
+        yield return new WaitForSeconds(0);
     }
 
     /// <summary>

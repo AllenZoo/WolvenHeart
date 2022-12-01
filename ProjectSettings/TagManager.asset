@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3161837453
+    locked: 0
+  - name: Player
+    uniqueID: 3577466955
+    locked: 0
+  - name: Trail
+    uniqueID: 2094058309
+    locked: 0
+  - name: Particle
+    uniqueID: 1421979167
+    locked: 0

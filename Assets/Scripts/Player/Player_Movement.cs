@@ -70,4 +70,13 @@ public class Player_Movement : MonoBehaviour
             Debug.LogWarning("Invalid dir param");
         }
     }
+
+    /// <summary>
+    /// Gets the Direction of Player in which they will dash if requested.
+    /// </summary>
+    /// <returns> normlized direction vector </returns>
+    public Vector2 GetDashDir()
+    {
+        return lastDir.normalized;
+    }
 }

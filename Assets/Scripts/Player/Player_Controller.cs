@@ -104,6 +104,12 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
+
+    private void HandleAbilityCooldown(AbilityAction daa)
+    {
+        ah.StartCooldown(daa.soAbility);
+    }
+
     /* -------------------------------------------------------------------------- */
 
     /* -------------------------------------------------------------------------- */
@@ -166,9 +172,9 @@ public class Player_Controller : MonoBehaviour
     /*                                  STATS                                     */
     /* -------------------------------------------------------------------------- */
 
-    private void HandleAbilityCost()
+    private void HandleAbilityCost(AbilityAction daa)
     {
-
+        stats.SpendStamina(daa.cost);
     }
 
 

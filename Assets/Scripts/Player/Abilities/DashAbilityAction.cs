@@ -7,7 +7,7 @@ public class DashAbilityAction : AbilityAction
 {
     public float range;
     public float dir;
-    public float cost;
+
     public DashAbilityAction(float range, float dir)
     {
         actionType = AbilityActionType.DashAbility;

@@ -6,6 +6,7 @@ public class AbilityAction
 {
     public AbilityActionType actionType;
     public SO_Ability soAbility;
+    public float cost;
 }
 
 public enum AbilityActionType

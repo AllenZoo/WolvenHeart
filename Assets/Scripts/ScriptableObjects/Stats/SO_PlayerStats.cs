@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new player stats", menuName = "SO/Stats/PlayerStats")]
+
 public class SO_PlayerStats : SO_Stats
 {
     /*------------------ Special Stats ----------------*/

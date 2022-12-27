@@ -9,20 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54afc051cf8241146b9a999ce9364756, type: 3}
-  m_Name: PlayerStat
+  m_Script: {fileID: 11500000, guid: f7a900d3f971f424a9a10134f42eb0b6, type: 3}
+  m_Name: StaminaRegen
   m_EditorClassIdentifier: 
-  hp: 100
-  sp: 100
-  str: 1
-  agl: 1
-  def: 1
-  reg: 1
-  rec: 1
-  aRec: 1
-  aReg: 1
-  LSTL: 1
-  LUCK: 1
-  PREC: 1
-  CDR: 1
-  APEN: 1

@@ -44,7 +44,7 @@ public class Player_AbilityHandler : MonoBehaviour
     ///     1. Ability is available
     /// </summary>
     /// <param name="input">trigger key</param>
-    public void TryTriggerAbility(KeyCode input, PlayerStats stats)
+    public void TryTriggerAbility(KeyCode input, Stats stats)
     {
         if (abilityDict.ContainsKey(input))
         {
@@ -73,9 +73,10 @@ public class Player_AbilityHandler : MonoBehaviour
     /// the player has equipped.
     /// </summary>
     /// <param ability="input">ability to check for availability</param>
-    private bool IsAbilityAvailable(SO_Ability ability, PlayerStats stats)
+    private bool IsAbilityAvailable(SO_Ability ability, Stats stats)
     {
-        return !abilityOnCD[ability] && stats.curSP >= ability.cost;
+        // TODO: implement
+        return !abilityOnCD[ability] && stats.GetStatValue(Stats.Stat.curStamina) >= ability.cost;
     }
 
     /// <summary>

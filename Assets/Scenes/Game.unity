@@ -14721,7 +14721,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 369088635}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16407,6 +16407,7 @@ GameObject:
   - component: {fileID: 1901378513}
   - component: {fileID: 1901378516}
   - component: {fileID: 1901378517}
+  - component: {fileID: 1901378518}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -16541,24 +16542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d76516346ebbe44abe1a711f94757b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soStats: {fileID: 11400000, guid: 5493deffd570d784c91d8012cff01fc6, type: 2}
-  pStats:
-    maxHP: 100
-    maxSP: 100
-    str: 1
-    agl: 1
-    def: 1
-    reg: 1
-    rec: 1
-    curHP: 0
-    curSP: 0
-    aRec: 1
-    aReg: 1
-    LSTL: 1
-    LUCK: 1
-    PREC: 1
-    CDR: 1
-    APEN: 1
+  statsTemplate: {fileID: 11400000, guid: e2fbc7899a2d741abb42a6ba865ca6ee, type: 2}
+  curStats: {fileID: 11400000, guid: 890aa7ac6bf614e2bb335d67229415aa, type: 2}
 --- !u!95 &1901378511
 Animator:
   serializedVersion: 4
@@ -16758,6 +16743,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashParticle: {fileID: 5683482445751859991, guid: c280ba18e20b5484daf9dfd8f4abf962, type: 3}
+--- !u!114 &1901378518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901378503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4c47a8e2d344de8a111ad84dc0bcca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2025475189
 GameObject:
   m_ObjectHideFlags: 0
@@ -16963,7 +16960,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1672467551}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

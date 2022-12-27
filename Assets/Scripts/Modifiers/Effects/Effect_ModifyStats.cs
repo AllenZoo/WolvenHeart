@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect_ModifyStats : MonoBehaviour
+public abstract class Effect_ModifyStats : IEffect
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Stats.Stat statType;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

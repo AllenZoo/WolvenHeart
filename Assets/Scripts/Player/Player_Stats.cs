@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player_Stats : MonoBehaviour
 {
-    [SerializeField] private SO_PlayerStats soStats;
-    [SerializeField] private PlayerStats pStats;
+    [SerializeField] private Stats statsTemplate;
+    [SerializeField] private Stats curStats;
+
 
     /* --------------------------------- STATES -------------------------------- */
     protected bool canRegenHP = true;
@@ -15,37 +16,20 @@ public class Player_Stats : MonoBehaviour
     /* ---------------------------------- INIT ----------------------------- */
     private void Awake()
     {
-        pStats = new PlayerStats();
-
-        // TODO: move all the initialization into respective classes.
-        pStats.maxHP = soStats.hp;
-        pStats.maxSP = soStats.sp;
-        pStats.str = soStats.str;
-        pStats.agl = soStats.agl;
-        pStats.def = soStats.def;
-        pStats.reg = soStats.reg;
-        pStats.rec = soStats.rec;
-
-        pStats.aRec = soStats.aRec;
-        pStats.aReg = soStats.aReg;
-        pStats.LSTL = soStats.LSTL;
-        pStats.LUCK = soStats.LUCK;
-        pStats.PREC = soStats.PREC;
-        pStats.CDR = soStats.CDR;
-        pStats.APEN = soStats.APEN;
+        curStats.Copy(statsTemplate);
     }
 
     private void Start()
     {
-        pStats.curHP = pStats.maxHP;
-        pStats.curSP = pStats.maxSP;
+        //pStats.curHP = pStats.maxHP;
+        //pStats.curSP = pStats.maxSP;
         StartCoroutine(HandleSPRegen());
     }
 
     /* -------------------------------- MODIFIERS ------------------------------- */
     public void SpendStamina(float value)
     {
-        pStats.curSP -= value;
+        curStats.SubtractToStatValue(Stats.Stat.curHealth, value);
         StopAllCoroutines();
         StartCoroutine(HandleSPRegen());
     }
@@ -55,11 +39,12 @@ public class Player_Stats : MonoBehaviour
     public float GetMovementSpeed()
     {
         // TODO: implement speed calculator
-        return pStats.agl * 5;
+        return curStats.GetStatValue(Stats.Stat.agility) * 5;
     }
-    public PlayerStats GetPlayerStats()
+
+    public Stats GetPlayerStats()
     {
-        return pStats;
+        return curStats;
     }
 
     /* --------------------------------- REGEN -------------------------------- */
@@ -72,15 +57,19 @@ public class Player_Stats : MonoBehaviour
     }
     private float GetHPRegenValue()
     {
-        return pStats.reg * 5;
+        return curStats.GetStatValue(Stats.Stat.vitality) * 5;
     }
     private void RecoverHP(float value)
     {
-        pStats.curHP += value;
+        
+        curStats.AddToStatValue(Stats.Stat.curHealth, value);
 
-        if (pStats.curHP > pStats.maxHP)
+        float curHP = curStats.GetStatValue(Stats.Stat.curHealth);
+        float maxHP = curStats.GetStatValue(Stats.Stat.maxHealth);
+
+        if (curHP > maxHP)
         {
-            pStats.curHP = pStats.maxHP;
+            curStats.SetStatValue(Stats.Stat.curHealth, maxHP);
         }
     }
 
@@ -92,24 +81,31 @@ public class Player_Stats : MonoBehaviour
         RecoverSP(GetSPRegenValue());
     }
     private float GetSPRegenValue()
-    {
-        return pStats.rec * 5;
+    { 
+        return curStats.GetStatValue(Stats.Stat.endurance) * 5;
     }
     private void RecoverSP(float value)
     {
-        pStats.curSP += value;
+        curStats.AddToStatValue(Stats.Stat.curStamina, value);
 
-        if (pStats.curSP > pStats.maxSP)
+        float curSP = curStats.GetStatValue(Stats.Stat.curStamina);
+        float maxSP = curStats.GetStatValue(Stats.Stat.maxStamina);
+
+        if (curSP > maxSP)
         {
-            pStats.curSP = pStats.maxSP;
+            curStats.SetStatValue(Stats.Stat.curStamina, maxSP);
         }
     }
     private IEnumerator HandleSPRegen()
     {
-        while (pStats.curSP < pStats.maxSP)
+        float curSP = curStats.GetStatValue(Stats.Stat.curStamina);
+        float maxSP = curStats.GetStatValue(Stats.Stat.maxStamina);
+
+        while (curSP < maxSP)
         {
             yield return StartCoroutine(RegenSP());
         }
+        yield return new WaitForSeconds(1);
     }
 
 

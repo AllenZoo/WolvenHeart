@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player_Input : MonoBehaviour
 {
 
-    // Request Move x and y. (normalized)
-    public event Action<float, float> OnRequestMove;
+    // Request Move Vector2. (normalized)
+    public event Action<Vector2> OnRequestMove;
 
     public event Action OnRequestInteract;
 
@@ -18,29 +19,18 @@ public class Player_Input : MonoBehaviour
     /* -------------------------------------------------------------------------- */
     private void FixedUpdate()
     {
-        HandleMovementInput();
+        
     }
 
     private void Update()
     {
+        // HandleMovementInput();
         HandleInteractInput();
         HandleAbilityInput();
     }
 
     /* -------------------------------------------------------------------------- */
-    /// <summary>
-    /// Handles movement inputs (WASD, Arrow Keys, etc.).
-    /// </summary>
-    private void HandleMovementInput()
-    {
-        float yInput =  Input.GetAxis("Vertical");
-        float xInput = Input.GetAxis("Horizontal");
-
-        yInput *= Time.fixedDeltaTime;
-        xInput *= Time.fixedDeltaTime;
-
-        OnRequestMove?.Invoke(xInput, yInput);
-    }
+   
     
     /// <summary>
     /// Handles object interact inputs.
@@ -67,4 +57,31 @@ public class Player_Input : MonoBehaviour
         }
     }
 
+
+    //---------------------------- Deprecated ---------------------------------//
+    /// NOTE: using this method may result in clunky movement, thus functionality of handling input of
+    /// moving player has been moved to Player_Controller.cs
+    /// 
+    /// Would be ideal to have this method in Player_Input.cs to stick with SRP design principles.
+    /// 
+    /// <summary>
+    /// Handles movement inputs (WASD, Arrow Keys, etc.).
+    /// Calls OnRequestMove event with normalized direction vector.
+    /// </summary>
+    private void HandleMovementInput()
+    {
+        float yInput = Input.GetAxis("Vertical");
+        float xInput = Input.GetAxis("Horizontal");
+
+        yInput *= Time.fixedTime;
+        xInput *= Time.fixedTime;
+
+        xInput = Mathf.Clamp(xInput, -1, 1);
+        yInput = Mathf.Clamp(yInput, -1, 1);
+
+        Vector2 direction = new Vector2(xInput, yInput);
+
+        // todo: remove this
+        // OnRequestMove?.Invoke(direction);
+    }
 }

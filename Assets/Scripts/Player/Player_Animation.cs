@@ -21,7 +21,7 @@ public class Player_Animation : MonoBehaviour
     /// Handles player movements given <paramref name="vector"/>.
     /// </summary>
     /// <param name="vector">direction to move (keep z=0)</param>
-    public void HandlePlayerMovement(Vector3 vector)
+    public void HandlePlayerMovement(Vector2 vector)
     {
         HandlePlayerMovement(vector.x, vector.y);
     }

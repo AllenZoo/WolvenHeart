@@ -3,15 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player_Movement : MonoBehaviour
+public class Player_MovementHandler : MovementHandler
 {
-    private Rigidbody2D rb;
-
-    // Set default dir to downwards (0, -1)
-    private Vector2 curDir = Vector2.down;
-
-    // Tracks the last dir where player faced while moving
-    private Vector2 lastDir = Vector2.down;
 
     /* -------------------------------------------------------------------------- */
     /*                                    INIT                                    */
@@ -21,13 +14,32 @@ public class Player_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
-    {
-        
-    }
-
     /* -------------------------------------------------------------------------- */
 
+
+    // This functions moves the player by adjusting the transform position of rigidbody.
+    public override void Move(Vector2 direction, float speed)
+    {
+        // Debug.Log("moving " + this.gameObject.name + " with params: direction: " + direction + " speed: " + speed);
+
+        Vector2 calculatedVector = direction * speed;
+        // Debug.Log("Calculated Vector: " + calculatedVector + "");
+
+        //rb.MovePosition(rb.position + calculatedVector * Time.fixedDeltaTime);
+        rb.velocity = direction.normalized * speed;
+
+    }
+
+    // This functions makes the player dash by adjusting the transform position. Essentially the same as Move() however with heightened
+    // speed.
+    public override void Dash(Vector2 direction, float dashSpeed)
+    {
+        Move(direction, dashSpeed);
+    }
+    
+
+    /* -------------------------------------------------------------------------- */
+    /*                                  OLD                                       */
     /// <summary>
     /// Moves player by (<paramref name="x"/>,<paramref name="y"/>) pixels,
     /// multiplied by <paramref name="speed"/>.
@@ -39,7 +51,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (x != 0 || y != 0)
         {
-            lastDir = new Vector2(x, y).normalized;
+            // lastDir = new Vector2(x, y).normalized;
         }
         float moveX = x * speed;
         float moveY = y * speed;
@@ -52,20 +64,22 @@ public class Player_Movement : MonoBehaviour
     /// </summary>
     /// <param name="range">number of pixels to dash forward</param>
     /// <param name="dir">dash direction (forward = 1, backward = -1)</param>
-    public void Dash(float range, float dir)
+    public void DashOld(float range, float dir)
     {
         if (dir == 1)
         {
             // dash forward
-            Debug.Log("Dashing forwards " + range + " pixels" + " in dir: (" + lastDir.x*dir + ", " + lastDir.y*dir + ")");
-            MovePlayer(lastDir.x * dir, lastDir.y * dir, range);
+            // Debug.Log("Dashing forwards " + range + " pixels" + " in dir: (" + lastDir.x * dir + ", " + lastDir.y * dir + ")");
+            // MovePlayer(lastDir.x * dir, lastDir.y * dir, range);
 
-        } else if (dir == -1)
+        }
+        else if (dir == -1)
         {
             // dash backwards
-            Debug.Log("Dashing backwards " + range + " pixels" + " in dir: (" + lastDir.x*dir + ", " + lastDir.y*dir + ")");
-            MovePlayer(lastDir.x * dir, lastDir.y * dir, range);
-        } else
+            // Debug.Log("Dashing backwards " + range + " pixels" + " in dir: (" + lastDir.x * dir + ", " + lastDir.y * dir + ")");
+            // MovePlayer(lastDir.x * dir, lastDir.y * dir, range);
+        }
+        else
         {
             Debug.LogWarning("Invalid dir param");
         }
@@ -77,6 +91,7 @@ public class Player_Movement : MonoBehaviour
     /// <returns> normlized direction vector </returns>
     public Vector2 GetDashDir()
     {
-        return lastDir.normalized;
+        return new Vector2();
+        //return lastDir.normalized;
     }
 }

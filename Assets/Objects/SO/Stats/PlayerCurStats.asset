@@ -20,7 +20,7 @@ MonoBehaviour:
   - statType: 2
     value: 100
   - statType: 3
-    value: 50
+    value: 100
   - statType: 4
     value: 1
   - statType: 5

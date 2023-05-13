@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(Player_Movement), typeof(Player_Input), typeof(Player_Animation))]
+
+
+/**
+ * 
+ * Player Controller class that connects everything together.
+ * Acts like an API of sorts.
+ * 
+ */
+[RequireComponent (typeof(Player_MovementHandler), typeof(Player_Input), typeof(Player_Animation))]
 [RequireComponent(typeof(Player_Stats), typeof(Player_CollisionManager), typeof(Player_Animation))]
 [RequireComponent(typeof(Player_AbilityHandler), typeof(Player_ParticleHandler))]
 
 public class Player_Controller : MonoBehaviour
 {
-    private Player_Movement movement;
+    private Player_MovementHandler movement;
     private Player_Input input;
     private Player_Animation animator;
     private Player_Stats stats;
@@ -21,7 +29,7 @@ public class Player_Controller : MonoBehaviour
     /* -------------------------------------------------------------------------- */
     public void Awake()
     {
-        movement = GetComponent<Player_Movement>();
+        movement = GetComponent<Player_MovementHandler>();
         input = GetComponent<Player_Input>();
         animator = GetComponent<Player_Animation>();
         stats = GetComponent<Player_Stats>();
@@ -115,7 +123,29 @@ public class Player_Controller : MonoBehaviour
     /* -------------------------------------------------------------------------- */
     /*                                  MOVEMENT                                  */
     /* -------------------------------------------------------------------------- */
-    
+
+    /// NOTE: this violates the SRP, but it is required to maintain smooth movement
+    ///         - method is also called in Update.
+    /// <summary>
+    /// Handles requests for player movement (both physics and animation).
+    /// </summary>
+    /// <param name="dir">normalized direction vector</param>
+    private void HandleMovementInput_Updated()
+    {
+        Vector2 dir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movement.Move(dir, stats.GetMovementSpeed());
+        animator.HandlePlayerMovement(dir);
+    }
+
+    /// <summary>
+    /// Handles requests for player movement (both physics and animation).
+    /// </summary>
+    /// <param name="dir">normalized direction vector</param>
+    private void HandleMovementRequest(Vector2 dir)
+    {
+        movement.Move(dir, stats.GetMovementSpeed());
+        animator.HandlePlayerMovement(dir);
+    }
 
     /// <summary>
     /// Requests player to dash <paramref name="range"/> pixels
@@ -125,7 +155,8 @@ public class Player_Controller : MonoBehaviour
     /// <param name="dir">dash direction (forward = 1, backward = -1)</param>
     private void HandleDashRequest(float range, float dir)
     {
-        movement.Dash(range, dir);
+        // TODO: fix.
+        // movement.Dash(range, dir);
     }
 
     /* -------------------------------------------------------------------------- */
@@ -134,22 +165,15 @@ public class Player_Controller : MonoBehaviour
     /*                                 CONTROLLER                                 */
     /* -------------------------------------------------------------------------- */
 
-    /// <summary>
-    /// Handles requests for player movement (both physics and animation).
-    /// </summary>
-    /// <param name="x">+right, -left</param>
-    /// <param name="y">+up, -down</param>
-    private void HandleMovementRequest(float x, float y)
-    {
-        Vector3 movementVector = new Vector3(x, y, 0).normalized;
-        movement.MovePlayer(x, y, stats.GetMovementSpeed());
-        animator.HandlePlayerMovement(movementVector);
-    }
+   
 
     IEnumerator InvokeDashRequest(DashAbilityAction daa)
     {
         ph.SpawnDashParticle(movement.GetDashDir());
-        movement.Dash(daa.range, daa.dir);
+
+        // TODO: fix.
+        // movement.Dash(daa.range, daa.dir);
+
         stats.SpendStamina(daa.cost);
         ah.StartCooldown(daa.soAbility);
         
@@ -180,4 +204,9 @@ public class Player_Controller : MonoBehaviour
 
 
     /* -------------------------------------------------------------------------- */
+
+    private void Update()
+    {
+        HandleMovementInput_Updated();
+    }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_Stats : MonoBehaviour
 {
+    protected const double STAT_SCALE  = 0.01;
     [SerializeField] private Stats statsTemplate;
     [SerializeField] private Stats curStats;
 

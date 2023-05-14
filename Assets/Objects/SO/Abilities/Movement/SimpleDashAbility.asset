@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ed8a070f51adf4ca2bf58282c4608f, type: 3}
   m_Name: SimpleDashAbility
   m_EditorClassIdentifier: 
-  animation: {fileID: 0}
+  animation: {fileID: 7400000, guid: df3131fab1f534f4d8737b85648f1a6b, type: 2}
   name: Simple Dash
   cost: 10
   cooldown: 3

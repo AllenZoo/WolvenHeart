@@ -14717,8 +14717,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 369088636}
   m_HandleRect: {fileID: 369088635}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16552,7 +16552,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 881c5252bf9240e4ca93ad2859ee9341, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -16952,7 +16952,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1672467551}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

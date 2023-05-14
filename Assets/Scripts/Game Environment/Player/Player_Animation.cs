@@ -64,6 +64,6 @@ public class Player_Animation : AnimationHandler
 
     public override void PlayAnimation(string animationName)
     {
-        throw new System.NotImplementedException();
+        animator.Play(animationName);
     }
 }

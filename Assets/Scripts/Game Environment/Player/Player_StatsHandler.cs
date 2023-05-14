@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Stats : MonoBehaviour
+public class Player_StatsHandler : StatsHandler
 {
     protected const double STAT_SCALE  = 0.01;
     [SerializeField] private Stats statsTemplate;
@@ -24,7 +24,7 @@ public class Player_Stats : MonoBehaviour
     {
         //pStats.curHP = pStats.maxHP;
         //pStats.curSP = pStats.maxSP;
-        StartCoroutine(HandleSPRegen());
+        // StartCoroutine(HandleSPRegen());
     }
 
     /* -------------------------------- MODIFIERS ------------------------------- */
@@ -40,10 +40,24 @@ public class Player_Stats : MonoBehaviour
     public float GetMovementSpeed()
     {
         // TODO: implement speed calculator
-        return curStats.GetStatValue(Stats.Stat.agility) * 5;
+        try
+        {
+            //float ms = curStats.GetStatValue(Stats.Stat.agility) * 5;
+            // TODO: fix, this is a temp fix
+            return 10;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Stat not found on object");
+            return -1;
+        }
     }
 
     public Stats GetPlayerStats()
+    {
+        return curStats;
+    }
+    public override Stats GetStats()
     {
         return curStats;
     }

@@ -9,13 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21f064f9b12759d40b5de42587aa1b39, type: 3}
-  m_Name: Tackle
+  m_Script: {fileID: 11500000, guid: a1ed8a070f51adf4ca2bf58282c4608f, type: 3}
+  m_Name: SimpleDashAbility
   m_EditorClassIdentifier: 
   animation: {fileID: 0}
-  abilityName: Tackle
-  cost: 20
+  name: Simple Dash
+  cost: 10
   cooldown: 3
-  damage: 0
-  dashRange: 2
-  dashDir: 1
+  activeTime: 1
+  castTime: 0
+  isOnCooldown: 0
+  requiresTarget: 0
+  isInstantCast: 1
+  directionRotModifier: 1
+  speed: 100

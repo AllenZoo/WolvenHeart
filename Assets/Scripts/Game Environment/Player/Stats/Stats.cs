@@ -1,6 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/**
+ * Object that contains the stats of an entity
+ */
+
 
 [CreateAssetMenu(fileName = "new stats", menuName = "SO/Stats/stat")]
 
@@ -35,10 +41,12 @@ public class Stats : ScriptableObject
             if (s.statType == statType)
             {
                 return s.value;
+            } else
+            {
+                Debug.LogError("Stat not found on object : "  + statType.ToString());
+                // throw new CannotFindSpecifiedStatInEntity();
             }
         }
-
-        Debug.LogError("Stat not found on object");
         return -1;
     }
 
@@ -67,7 +75,7 @@ public class Stats : ScriptableObject
         AddToStatValue(statType, -value);
     }
 
-    public void MultipleToStatValue(Stats.Stat statType, float value)
+    public void MultiplyToStatValue(Stats.Stat statType, float value)
     {
         foreach (StatInfo s in stats)
         {
@@ -105,4 +113,12 @@ public class Stats : ScriptableObject
 
         this.stats = tempStats;
     }
+}
+
+[Serializable]
+public class CannotFindSpecifiedStatInEntity : Exception
+{
+    public CannotFindSpecifiedStatInEntity() : base() { }
+    public CannotFindSpecifiedStatInEntity(string message) : base(message) { }
+    public CannotFindSpecifiedStatInEntity(string message, Exception inner) : base(message, inner) { }
 }

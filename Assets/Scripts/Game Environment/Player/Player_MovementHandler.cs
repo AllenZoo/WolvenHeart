@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player_MovementHandler : MovementHandler
 {
+    private Vector2 lastDir;
 
     /* -------------------------------------------------------------------------- */
     /*                                    INIT                                    */
@@ -12,6 +13,7 @@ public class Player_MovementHandler : MovementHandler
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        lastDir = Vector2.down;
     }
 
     /* -------------------------------------------------------------------------- */
@@ -20,23 +22,30 @@ public class Player_MovementHandler : MovementHandler
     // This functions moves the player by adjusting the transform position of rigidbody.
     public override void Move(Vector2 direction, float speed)
     {
-        // Debug.Log("moving " + this.gameObject.name + " with params: direction: " + direction + " speed: " + speed);
-
-        Vector2 calculatedVector = direction * speed;
-        // Debug.Log("Calculated Vector: " + calculatedVector + "");
-
-        //rb.MovePosition(rb.position + calculatedVector * Time.fixedDeltaTime);
+        if (direction.x != 0 || direction.y != 0)
+        {
+            lastDir = direction.normalized;
+        }
         rb.velocity = direction.normalized * speed;
 
     }
 
     // This functions makes the player dash by adjusting the transform position. Essentially the same as Move() however with heightened
-    // speed.
+    // speed. Also uses MovePosition() instead of increasing rb.velocity.
     public override void Dash(Vector2 direction, float dashSpeed)
     {
-        Move(direction, dashSpeed);
+        Vector2 calculatedVector = direction * dashSpeed;
+        rb.MovePosition(rb.position + calculatedVector * Time.fixedDeltaTime);
     }
-    
+
+    // This functions makes the player dash by adjusting the transform position. Essentially the same as Move() however with heightened
+    // speed. Also uses MovePosition() instead of increasing rb.velocity.
+    public override void Dash(float directionMod, float dashSpeed)
+    {
+        Vector2 calculatedVector = lastDir * dashSpeed * directionMod;
+        rb.MovePosition(rb.position + calculatedVector * Time.fixedDeltaTime);
+    }
+
 
     /* -------------------------------------------------------------------------- */
     /*                                  OLD                                       */

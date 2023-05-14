@@ -16622,8 +16622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
-  - {fileID: 11400000, guid: 56264d3235506f3498438f81bcf1e3ea, type: 2}
-  - {fileID: 11400000, guid: caf53da8ce2522a42862ff1b20c1140b, type: 2}
+  - {fileID: 11400000, guid: 42d77b387dba9784b9bbc1b8748a4159, type: 2}
 --- !u!96 &1901378516
 TrailRenderer:
   serializedVersion: 2
@@ -16952,8 +16951,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672467552}
   m_HandleRect: {fileID: 1672467551}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

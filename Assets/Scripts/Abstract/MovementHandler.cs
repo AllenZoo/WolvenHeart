@@ -30,4 +30,13 @@ public abstract class MovementHandler : MonoBehaviour
      * @param speed The speed to dash the entity
      */
      public abstract void Dash(Vector2 direction, float speed);
+
+    /**
+     * This method is called to make the entity dash
+     * 
+     * @param directionModifier The rotation applied to the direction vector. 1 = curDir, -1 = -curDir
+     * @param speed The speed to dash the entity
+     * 
+     */
+    public abstract void Dash(float directionModifier, float speed); 
 }

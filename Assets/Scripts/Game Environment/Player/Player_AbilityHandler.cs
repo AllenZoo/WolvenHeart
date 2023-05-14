@@ -5,15 +5,15 @@ using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public class Player_AbilityHandler : MonoBehaviour
+public class Player_AbilityHandler : AbilityHandler
 {
     [SerializeField] private List<SO_AbilityInputPair> abilities;
 
     // Keeps track of ability inputs assigned to abilities
-    private Dictionary<KeyCode, SO_Ability> abilityDict;
+    private Dictionary<KeyCode, Ability> abilityDict;
 
-    // Tracks whether ability is on cooldown or not
-    private Dictionary<SO_Ability, bool> abilityOnCD;
+    //// Tracks whether ability is on cooldown or not
+    //private Dictionary<SO_Ability, bool> abilityOnCD;
 
     public Action<AbilityAction> OnAbilityActionRequest;
 
@@ -22,8 +22,8 @@ public class Player_AbilityHandler : MonoBehaviour
     /* -------------------------------------------------------------------------- */
     private void Awake()
     {
-        abilityDict = new Dictionary<KeyCode, SO_Ability>();
-        abilityOnCD = new Dictionary<SO_Ability, bool>();
+        abilityDict = new Dictionary<KeyCode, Ability>();
+        // abilityOnCD = new Dictionary<SO_Ability, bool>();
     }
 
     private void Start()
@@ -31,12 +31,28 @@ public class Player_AbilityHandler : MonoBehaviour
         // Initialize Ability Dict
         foreach (SO_AbilityInputPair p in abilities)
         {
-            abilityDict.Add(p.keyCode, p.ability);
-            abilityOnCD.Add(p.ability, false);
+            Ability ability = p.ability.GenerateAbilityRef(this.gameObject);
+            // Binds ability to ability holder (player)
+             abilityDict.Add(p.keyCode, ability);
+            // abilityOnCD.Add(p.ability, false);
         }
     }
 
     /* -------------------------------------------------------------------------- */
+
+    public void RequestAbilityTrigger(KeyCode input)
+    {
+        try
+        {
+            Ability ability = abilityDict[input];
+            ability.Trigger(this);
+            
+        } catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+    }
+
 
     /// <summary>
     /// Tests if the trigger key corresponds to an ability.
@@ -46,22 +62,22 @@ public class Player_AbilityHandler : MonoBehaviour
     /// <param name="input">trigger key</param>
     public void TryTriggerAbility(KeyCode input, Stats stats)
     {
-        if (abilityDict.ContainsKey(input))
-        {
-            SO_Ability ability = abilityDict[input];
-            if (IsAbilityAvailable(ability, stats))
-            {
-                Debug.Log("Using ability: " + ability.abilityName);
-                OnAbilityActionRequest?.Invoke(ability.Trigger());
-            } else
-            {
-                Debug.Log("Ability is not available right now");
-            }
+        //if (abilityDict.ContainsKey(input))
+        //{
+        //    // SO_Ability ability = abilityDict[input];
+        //    if (IsAbilityAvailable(ability, stats))
+        //    {
+        //        //Debug.Log("Using ability: " + ability.abilityName);
+        //        //OnAbilityActionRequest?.Invoke(ability.Trigger());
+        //    } else
+        //    {
+        //        Debug.Log("Ability is not available right now");
+        //    }
             
-        } else
-        {
-            Debug.Log("Player doesn't have that ability input bounded to ability");
-        }
+        //} else
+        //{
+        //    Debug.Log("Player doesn't have that ability input bounded to ability");
+        //}
     }
 
     /// <summary>
@@ -76,7 +92,8 @@ public class Player_AbilityHandler : MonoBehaviour
     private bool IsAbilityAvailable(SO_Ability ability, Stats stats)
     {
         // TODO: implement
-        return !abilityOnCD[ability] && stats.GetStatValue(Stats.Stat.curStamina) >= ability.cost;
+        // return !abilityOnCD[ability] && stats.GetStatValue(Stats.Stat.curStamina) >= ability.cost;
+        return false;
     }
 
     /// <summary>
@@ -91,13 +108,13 @@ public class Player_AbilityHandler : MonoBehaviour
     private IEnumerator RefreshCooldown(SO_Ability ability)
     {
         // set ability on cooldown
-        abilityOnCD[ability] = true;
+        //abilityOnCD[ability] = true;
 
         Debug.Log("Starting " + ability.name + " cooldown " + " for " + ability.cooldown + " seconds");
         yield return new WaitForSeconds(ability.cooldown);
 
         // Sets the ability to not be on Cooldown
-        abilityOnCD[ability] = false;
+        //abilityOnCD[ability] = false;
 
         Debug.Log(ability.cooldown + " Cooldown Refreshed!!");
     }

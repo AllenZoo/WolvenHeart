@@ -11,7 +11,7 @@ using UnityEngine;
  * 
  */
 [RequireComponent (typeof(Player_MovementHandler), typeof(Player_Input), typeof(Player_Animation))]
-[RequireComponent(typeof(Player_Stats), typeof(Player_CollisionManager), typeof(Player_Animation))]
+[RequireComponent(typeof(Player_StatsHandler), typeof(Player_CollisionManager), typeof(Player_Animation))]
 [RequireComponent(typeof(Player_AbilityHandler), typeof(Player_ParticleHandler))]
 
 public class Player_Controller : MonoBehaviour
@@ -19,7 +19,7 @@ public class Player_Controller : MonoBehaviour
     private Player_MovementHandler movement;
     private Player_Input input;
     private Player_Animation animator;
-    private Player_Stats stats;
+    private Player_StatsHandler stats;
     private Player_CollisionManager cm;
     private Player_AbilityHandler ah;
     private Player_ParticleHandler ph;
@@ -32,7 +32,7 @@ public class Player_Controller : MonoBehaviour
         movement = GetComponent<Player_MovementHandler>();
         input = GetComponent<Player_Input>();
         animator = GetComponent<Player_Animation>();
-        stats = GetComponent<Player_Stats>();
+        stats = GetComponent<Player_StatsHandler>();
         cm = GetComponent<Player_CollisionManager>();
         ah = GetComponent<Player_AbilityHandler>();
         ph = GetComponent<Player_ParticleHandler>();
@@ -79,7 +79,7 @@ public class Player_Controller : MonoBehaviour
     /// </summary>
     private void PrepareAbilities()
     {
-        ah.OnAbilityActionRequest += HandleAbilityAction;
+        // ah.OnAbilityActionRequest += HandleAbilityAction;
     }
 
     /// <summary>
@@ -88,29 +88,30 @@ public class Player_Controller : MonoBehaviour
     /// <param name="k">trigger key</param>
     private void HandleAbilityRequest(KeyCode k)
     {
-        ah.TryTriggerAbility(k, stats.GetPlayerStats());
+        // ah.TryTriggerAbility(k, stats.GetPlayerStats());
+        ah.RequestAbilityTrigger(k);
     }
 
     /// <summary>
     /// Handler for ability actions.
     /// </summary>
     /// <param name="abilityAction">ability action</param>
-    private void HandleAbilityAction(AbilityAction abilityAction)
-    {
-        switch (abilityAction.actionType)
-        {
-            case AbilityActionType.DashAbility:
-                Debug.Log("Handling Dash Ability");
+    //private void HandleAbilityAction(AbilityAction abilityAction)
+    //{
+    //    switch (abilityAction.actionType)
+    //    {
+    //        case AbilityActionType.DashAbility:
+    //            Debug.Log("Handling Dash Ability");
 
-                // TODO: Make this code better so we don't have to cast
-                DashAbilityAction ab = (DashAbilityAction) abilityAction;
-                StartCoroutine(InvokeDashRequest(ab));
-                break;
-            default:
-                Debug.Log("Unimplemented Action type requested");
-                break;
-        }
-    }
+    //            // TODO: Make this code better so we don't have to cast
+    //            DashAbilityAction ab = (DashAbilityAction)abilityAction;
+    //            StartCoroutine(InvokeDashRequest(ab));
+    //            break;
+    //        default:
+    //            Debug.Log("Unimplemented Action type requested");
+    //            break;
+    //    }
+    //}
 
 
     private void HandleAbilityCooldown(AbilityAction daa)
@@ -167,18 +168,18 @@ public class Player_Controller : MonoBehaviour
 
    
 
-    IEnumerator InvokeDashRequest(DashAbilityAction daa)
-    {
-        ph.SpawnDashParticle(movement.GetDashDir());
+    //IEnumerator InvokeDashRequest(DashAbilityAction daa)
+    //{
+    //    ph.SpawnDashParticle(movement.GetDashDir());
 
-        // TODO: fix.
-        // movement.Dash(daa.range, daa.dir);
+    //    // TODO: fix.
+    //    // movement.Dash(daa.range, daa.dir);
 
-        stats.SpendStamina(daa.cost);
-        ah.StartCooldown(daa.soAbility);
+    //    stats.SpendStamina(daa.cost);
+    //    ah.StartCooldown(daa.soAbility);
         
-        yield return new WaitForSeconds(0);
-    }
+    //    yield return new WaitForSeconds(0);
+    //}
 
     /// <summary>
     /// Prepares movements.

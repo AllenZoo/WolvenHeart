@@ -7,7 +7,7 @@ public class MovementAbility : Ability
 {
     private MovementHandler mHandler;
     private SO_MovementAbility mData;
-    public MovementAbility(SO_MovementAbility mData, GameObject abilityHolder)
+    public MovementAbility(SO_MovementAbility mData, GameObject abilityHolder) : base(mData, abilityHolder)
     {
         this.data = mData;
         this.mData = mData;

@@ -6,6 +6,13 @@ using UnityEngine;
 public abstract class Ability
 {
     protected SO_Ability data;
+    protected AnimationHandler aHandler;
+
+    public Ability(SO_Ability data, GameObject abilityHolder)
+    {
+        this.data = data;
+        this.aHandler = abilityHolder.GetComponent<AnimationHandler>();
+    }
 
     // Triggerrs the request to start the process of activating the ability
     public void Trigger(AbilityHandler abilityHolder)
@@ -14,6 +21,7 @@ public abstract class Ability
         {
             Activate();
             abilityHolder.StartCoroutine(StartCooldown());
+            aHandler.PlayAnimation(data.animation.name);
         } else
         {
             throw new ViolatedAbilityConstraints("Entity doesn't fit the requirment of activating ability.");

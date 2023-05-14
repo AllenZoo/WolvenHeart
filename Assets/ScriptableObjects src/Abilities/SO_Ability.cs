@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public abstract class SO_Ability : ScriptableObject
 {
-    public Animation animation;
+    public AnimationClip animation;
     public new string name;
     public float cost;
     public float cooldown;

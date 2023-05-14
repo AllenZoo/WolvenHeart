@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(Animator))]
-public class Player_Animation : MonoBehaviour
+public class Player_Animation : AnimationHandler
 {
     private Animator animator;
 
@@ -60,5 +60,10 @@ public class Player_Animation : MonoBehaviour
     public float getYDir()
     {
         return animator.GetFloat("yDir");
+    }
+
+    public override void PlayAnimation(string animationName)
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -9,7 +9,6 @@ public class MovementAbility : Ability
     private SO_MovementAbility mData;
     public MovementAbility(SO_MovementAbility mData, GameObject abilityHolder) : base(mData, abilityHolder)
     {
-        this.data = mData;
         this.mData = mData;
         mHandler = abilityHolder.GetComponent<MovementHandler>();
     }

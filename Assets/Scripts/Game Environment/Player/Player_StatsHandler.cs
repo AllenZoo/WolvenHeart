@@ -28,13 +28,25 @@ public class Player_StatsHandler : StatsHandler
     }
 
     /* -------------------------------- MODIFIERS ------------------------------- */
+    public override void BuffStat(Stats.Stat stat, float amount, float duration)
+    {
+        Debug.Log("Buffing StatType: " + stat + " by " + amount + " for " + duration + " seconds");
+        StartCoroutine(BuffStatCoroutine(stat, amount, duration));
+    }
+
+    private IEnumerator BuffStatCoroutine(Stats.Stat stat, float amount, float duration)
+    {
+        curStats.AddToStatValue(stat, amount);
+        yield return new WaitForSeconds(duration);
+        curStats.SubtractToStatValue(stat, amount);
+    }
+
     public void SpendStamina(float value)
     {
         curStats.SubtractToStatValue(Stats.Stat.curHealth, value);
         StopAllCoroutines();
         StartCoroutine(HandleSPRegen());
     }
-
 
     /* --------------------------------- GETTERS -------------------------------- */
     public float GetMovementSpeed()
@@ -119,7 +131,6 @@ public class Player_StatsHandler : StatsHandler
         }
         yield return new WaitForSeconds(1);
     }
-
 
     
 }

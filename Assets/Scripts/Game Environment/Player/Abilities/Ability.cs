@@ -22,13 +22,27 @@ public abstract class Ability
     }
 
     // Triggerrs the request to start the process of activating the ability
+    // Will check the constraints of the ability before activating it
     public void Trigger(AbilityHandler abilityHolder)
     {
         if (VerifyConstraints())
         {
             Activate();
             abilityHolder.StartCoroutine(StartCooldown());
-            aHandler.PlayAnimation(data.animation.name);
+
+            if (data.animation != null)
+            {
+                Debug.Log("Playing animation: " + data.animation.name);
+                aHandler.PlayAnimation(data.animation.name);
+            }
+            
+
+            // TODO: Make sure animation isn't overwritten but particles are rendered.
+            foreach (Ability stackedAbility in stackedAbilities)
+            {
+                // No need to check constraints for stacked abilities
+                stackedAbility.Activate();
+            }
         } else
         {
             throw new ViolatedAbilityConstraints("Entity doesn't fit the requirment of activating ability.");

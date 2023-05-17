@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5155112cb1fb9594c8b6844c5e9e5195, type: 3}
+  m_Name: StrengthBuff_10_10
+  m_EditorClassIdentifier: 
+  animation: {fileID: 0}
+  name: ENRAGEEEEE
+  cost: 0
+  cooldown: 2
+  activeTime: 1
+  castTime: 0
+  isOnCooldown: 0
+  requiresTarget: 0
+  isInstantCast: 0
+  stackedAbilities: []
+  statType: 4
+  amount: 10
+  duration: 10

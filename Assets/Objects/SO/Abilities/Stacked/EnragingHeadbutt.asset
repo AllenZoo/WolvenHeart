@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ed8a070f51adf4ca2bf58282c4608f, type: 3}
+  m_Name: EnragingHeadbutt
+  m_EditorClassIdentifier: 
+  animation: {fileID: 7400000, guid: df3131fab1f534f4d8737b85648f1a6b, type: 2}
+  name: Anger Problems
+  cost: 0
+  cooldown: 0
+  activeTime: 0
+  castTime: 0
+  isOnCooldown: 0
+  requiresTarget: 0
+  isInstantCast: 0
+  stackedAbilities:
+  - {fileID: 11400000, guid: 7e4db2133f66c1d4bb91f4ba9a5305a5, type: 2}
+  directionRotModifier: 1
+  speed: 150

@@ -54,6 +54,9 @@ public class Player_Input : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.K))
         {
             OnRequestAbility?.Invoke(KeyCode.K);
+        } else if (Input.GetKeyDown(KeyCode.J))
+        {
+            OnRequestAbility.Invoke(KeyCode.J);
         }
     }
 

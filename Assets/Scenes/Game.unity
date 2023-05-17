@@ -14717,8 +14717,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 369088636}
   m_HandleRect: {fileID: 369088635}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16623,6 +16623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - {fileID: 11400000, guid: 42d77b387dba9784b9bbc1b8748a4159, type: 2}
+  - {fileID: 11400000, guid: ee5fb78c4f68dba4a8179ab44601b840, type: 2}
+  - {fileID: 11400000, guid: 4a7776a3f4a53304fbcdf7d1cafb87b3, type: 2}
 --- !u!96 &1901378516
 TrailRenderer:
   serializedVersion: 2
@@ -16952,7 +16954,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1672467551}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -81,7 +81,7 @@ public class Player_Input : MonoBehaviour
 
         Vector2 direction = new Vector2(xInput, yInput);
 
-        // todo: remove this
+        // todo: remove this, this is a fix for making the movement smoother.
         // OnRequestMove?.Invoke(direction);
     }
 }

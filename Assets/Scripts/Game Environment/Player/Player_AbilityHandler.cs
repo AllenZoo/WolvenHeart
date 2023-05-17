@@ -54,31 +54,6 @@ public class Player_AbilityHandler : AbilityHandler
     }
 
 
-    /// <summary>
-    /// Tests if the trigger key corresponds to an ability.
-    /// If so, request ability trigger if:
-    ///     1. Ability is available
-    /// </summary>
-    /// <param name="input">trigger key</param>
-    public void TryTriggerAbility(KeyCode input, Stats stats)
-    {
-        //if (abilityDict.ContainsKey(input))
-        //{
-        //    // SO_Ability ability = abilityDict[input];
-        //    if (IsAbilityAvailable(ability, stats))
-        //    {
-        //        //Debug.Log("Using ability: " + ability.abilityName);
-        //        //OnAbilityActionRequest?.Invoke(ability.Trigger());
-        //    } else
-        //    {
-        //        Debug.Log("Ability is not available right now");
-        //    }
-            
-        //} else
-        //{
-        //    Debug.Log("Player doesn't have that ability input bounded to ability");
-        //}
-    }
 
     /// <summary>
     /// Returns the availability of ability

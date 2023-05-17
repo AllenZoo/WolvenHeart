@@ -88,30 +88,8 @@ public class Player_Controller : MonoBehaviour
     /// <param name="k">trigger key</param>
     private void HandleAbilityRequest(KeyCode k)
     {
-        // ah.TryTriggerAbility(k, stats.GetPlayerStats());
         ah.RequestAbilityTrigger(k);
     }
-
-    /// <summary>
-    /// Handler for ability actions.
-    /// </summary>
-    /// <param name="abilityAction">ability action</param>
-    //private void HandleAbilityAction(AbilityAction abilityAction)
-    //{
-    //    switch (abilityAction.actionType)
-    //    {
-    //        case AbilityActionType.DashAbility:
-    //            Debug.Log("Handling Dash Ability");
-
-    //            // TODO: Make this code better so we don't have to cast
-    //            DashAbilityAction ab = (DashAbilityAction)abilityAction;
-    //            StartCoroutine(InvokeDashRequest(ab));
-    //            break;
-    //        default:
-    //            Debug.Log("Unimplemented Action type requested");
-    //            break;
-    //    }
-    //}
 
 
     private void HandleAbilityCooldown(AbilityAction daa)
@@ -144,21 +122,10 @@ public class Player_Controller : MonoBehaviour
     /// <param name="dir">normalized direction vector</param>
     private void HandleMovementRequest(Vector2 dir)
     {
-        movement.Move(dir, stats.GetMovementSpeed());
-        animator.HandlePlayerMovement(dir);
+        //movement.Move(dir, stats.GetMovementSpeed());
+        //animator.HandlePlayerMovement(dir);
     }
 
-    /// <summary>
-    /// Requests player to dash <paramref name="range"/> pixels
-    /// forwards or backwards depending on <paramref name="dir"/>.
-    /// </summary>
-    /// <param name="range">number of pixels to dash forward</param>
-    /// <param name="dir">dash direction (forward = 1, backward = -1)</param>
-    private void HandleDashRequest(float range, float dir)
-    {
-        // TODO: fix.
-        // movement.Dash(range, dir);
-    }
 
     /* -------------------------------------------------------------------------- */
 
@@ -167,19 +134,6 @@ public class Player_Controller : MonoBehaviour
     /* -------------------------------------------------------------------------- */
 
    
-
-    //IEnumerator InvokeDashRequest(DashAbilityAction daa)
-    //{
-    //    ph.SpawnDashParticle(movement.GetDashDir());
-
-    //    // TODO: fix.
-    //    // movement.Dash(daa.range, daa.dir);
-
-    //    stats.SpendStamina(daa.cost);
-    //    ah.StartCooldown(daa.soAbility);
-        
-    //    yield return new WaitForSeconds(0);
-    //}
 
     /// <summary>
     /// Prepares movements.

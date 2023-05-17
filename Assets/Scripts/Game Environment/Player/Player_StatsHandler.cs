@@ -42,7 +42,8 @@ public class Player_StatsHandler : StatsHandler
         // TODO: implement speed calculator
         try
         {
-            //float ms = curStats.GetStatValue(Stats.Stat.agility) * 5;
+            // float ms = curStats.GetStatValue(Stats.Stat.agility) * 5;
+            // return ms;
             // TODO: fix, this is a temp fix
             return 10;
         }
@@ -53,10 +54,6 @@ public class Player_StatsHandler : StatsHandler
         }
     }
 
-    public Stats GetPlayerStats()
-    {
-        return curStats;
-    }
     public override Stats GetStats()
     {
         return curStats;

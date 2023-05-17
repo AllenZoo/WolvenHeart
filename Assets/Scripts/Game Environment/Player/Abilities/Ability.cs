@@ -7,11 +7,18 @@ public abstract class Ability
 {
     protected SO_Ability data;
     protected AnimationHandler aHandler;
+    protected List<Ability> stackedAbilities;
 
     public Ability(SO_Ability data, GameObject abilityHolder)
     {
         this.data = data;
         this.aHandler = abilityHolder.GetComponent<AnimationHandler>();
+        stackedAbilities = new List<Ability>();
+
+        foreach (SO_Ability so_ability in data.stackedAbilities)
+        {
+            stackedAbilities.Add(so_ability.GenerateAbilityRef(abilityHolder));
+        }
     }
 
     // Triggerrs the request to start the process of activating the ability

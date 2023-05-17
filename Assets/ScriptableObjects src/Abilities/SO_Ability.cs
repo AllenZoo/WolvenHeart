@@ -18,6 +18,8 @@ public abstract class SO_Ability : ScriptableObject
     public bool requiresTarget;
     public bool isInstantCast;
 
+    public List<SO_Ability> stackedAbilities;
+
     public abstract Ability GenerateAbilityRef(GameObject abilityHolder);
 
     private void OnValidate()

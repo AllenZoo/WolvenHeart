@@ -5,8 +5,7 @@ using UnityEngine;
 public class Player_StatsHandler : StatsHandler
 {
     protected const double STAT_SCALE  = 0.01;
-    [SerializeField] private Stats statsTemplate;
-    [SerializeField] private Stats curStats;
+    
 
 
     /* --------------------------------- STATES -------------------------------- */
@@ -15,10 +14,6 @@ public class Player_StatsHandler : StatsHandler
 
 
     /* ---------------------------------- INIT ----------------------------- */
-    private void Awake()
-    {
-        curStats.Copy(statsTemplate);
-    }
 
     private void Start()
     {
@@ -28,18 +23,20 @@ public class Player_StatsHandler : StatsHandler
     }
 
     /* -------------------------------- MODIFIERS ------------------------------- */
-    public override void BuffStat(Stats.Stat stat, float amount, float duration)
-    {
-        Debug.Log("Buffing StatType: " + stat + " by " + amount + " for " + duration + " seconds");
-        StartCoroutine(BuffStatCoroutine(stat, amount, duration));
-    }
 
-    private IEnumerator BuffStatCoroutine(Stats.Stat stat, float amount, float duration)
-    {
-        curStats.AddToStatValue(stat, amount);
-        yield return new WaitForSeconds(duration);
-        curStats.SubtractToStatValue(stat, amount);
-    }
+    // USE FOR REFERENCE TO IMPLEMENT IN STAT HANDLER
+    //public void BuffStat(Stats.Stat stat, float amount, float duration)
+    //{
+    //    Debug.Log("Buffing StatType: " + stat + " by " + amount + " for " + duration + " seconds");
+    //    StartCoroutine(BuffStatCoroutine(stat, amount, duration));
+    //}
+
+    //private IEnumerator BuffStatCoroutine(Stats.Stat stat, float amount, float duration)
+    //{
+    //    curStats.AddToStatValue(stat, amount);
+    //    yield return new WaitForSeconds(duration);
+    //    curStats.SubtractToStatValue(stat, amount);
+    //}
 
     public void SpendStamina(float value)
     {
@@ -54,10 +51,8 @@ public class Player_StatsHandler : StatsHandler
         // TODO: implement speed calculator
         try
         {
-            // float ms = curStats.GetStatValue(Stats.Stat.agility) * 5;
-            // return ms;
-            // TODO: fix, this is a temp fix
-            return 10;
+            float ms = curStats.GetStatValue(Stats.Stat.agility) * 5;
+            return ms;
         }
         catch (System.Exception e)
         {
@@ -66,10 +61,6 @@ public class Player_StatsHandler : StatsHandler
         }
     }
 
-    public override Stats GetStats()
-    {
-        return curStats;
-    }
 
     /* --------------------------------- REGEN -------------------------------- */
 
@@ -132,5 +123,4 @@ public class Player_StatsHandler : StatsHandler
         yield return new WaitForSeconds(1);
     }
 
-    
 }

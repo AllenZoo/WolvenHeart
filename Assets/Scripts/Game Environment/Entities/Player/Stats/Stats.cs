@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class Stats : ScriptableObject
 {
-    [SerializeField] public List<StatInfo> stats;
+    [SerializeField] protected List<StatInfo> stats;
 
     public enum Stat
     {
@@ -41,13 +41,11 @@ public class Stats : ScriptableObject
             if (s.statType == statType)
             {
                 return s.value;
-            } else
-            {
-                Debug.LogError("Stat not found on object : "  + statType.ToString());
-                // throw new CannotFindSpecifiedStatInEntity();
-            }
+            } 
         }
-        return -1;
+
+        Debug.LogError("Stat not found on object : "  + statType.ToString());
+        throw new CannotFindSpecifiedStatInEntity();
     }
 
     public void AddToStatValue(Stats.Stat statType, float value)

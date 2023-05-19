@@ -20,7 +20,6 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
@@ -64,7 +63,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -97,6 +95,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1755,86 +1765,87 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      wolfsheet5_0: 2080792026
+      wolfsheet5_1: -1704106417
+      wolfsheet5_10: 836052841
+      wolfsheet5_11: 1394213205
       wolfsheet5_12: 440716440
-      wolfsheet5_31: -1540179478
-      wolfsheet5_57: -2092404399
+      wolfsheet5_13: -1656934436
+      wolfsheet5_14: -239926487
+      wolfsheet5_15: 46374793
+      wolfsheet5_16: -1205099847
       wolfsheet5_17: -513965204
+      wolfsheet5_18: -1635309964
+      wolfsheet5_19: 455816639
+      wolfsheet5_2: 863388737
+      wolfsheet5_20: 1913576752
+      wolfsheet5_21: 1990526788
       wolfsheet5_22: 1157225806
+      wolfsheet5_23: 563093169
+      wolfsheet5_24: -697018483
+      wolfsheet5_25: -1936283014
+      wolfsheet5_26: 1216054897
+      wolfsheet5_27: -387198424
+      wolfsheet5_28: -1679802158
+      wolfsheet5_29: 2004315950
+      wolfsheet5_3: -1557889951
+      wolfsheet5_30: 95560495
+      wolfsheet5_31: -1540179478
+      wolfsheet5_32: -83382867
+      wolfsheet5_33: 941629580
+      wolfsheet5_34: 2137760197
+      wolfsheet5_35: -244397595
+      wolfsheet5_36: 243684559
       wolfsheet5_37: 953774843
       wolfsheet5_38: 1700844144
       wolfsheet5_39: 479952603
+      wolfsheet5_4: 742217834
+      wolfsheet5_40: -814005799
+      wolfsheet5_41: 1152434656
+      wolfsheet5_42: 1283865513
       wolfsheet5_43: -895898748
-      wolfsheet5_6: -511597859
-      wolfsheet5_19: 455816639
-      wolfsheet5_33: 941629580
-      wolfsheet5_49: 1489272035
-      wolfsheet5_47: -960029921
-      wolfsheet5_45: 123753169
-      wolfsheet5_26: 1216054897
-      wolfsheet5_5: 64410273
-      wolfsheet5_66: 366357570
-      wolfsheet5_48: 1599013731
-      wolfsheet5_69: 1843856130
       wolfsheet5_44: 1535879137
-      wolfsheet5_2: 863388737
-      wolfsheet5_76: -690776557
-      wolfsheet5_53: -932858727
-      wolfsheet5_8: -566399970
-      wolfsheet5_10: 836052841
-      wolfsheet5_28: -1679802158
+      wolfsheet5_45: 123753169
+      wolfsheet5_46: -504749139
+      wolfsheet5_47: -960029921
+      wolfsheet5_48: 1599013731
+      wolfsheet5_49: 1489272035
+      wolfsheet5_5: 64410273
+      wolfsheet5_50: -672398756
+      wolfsheet5_51: -347288499
       wolfsheet5_52: 1932935379
-      wolfsheet5_63: 1281505716
-      wolfsheet5_23: 563093169
+      wolfsheet5_53: -932858727
+      wolfsheet5_54: 2003424421
+      wolfsheet5_55: -203200769
+      wolfsheet5_56: -1669686325
+      wolfsheet5_57: -2092404399
+      wolfsheet5_58: 2142131548
+      wolfsheet5_59: -539061783
+      wolfsheet5_6: -511597859
+      wolfsheet5_60: -1369007134
+      wolfsheet5_61: 1403952170
       wolfsheet5_62: 2021682886
+      wolfsheet5_63: 1281505716
       wolfsheet5_64: 766949195
       wolfsheet5_65: -1819486367
-      wolfsheet5_24: -697018483
-      wolfsheet5_50: -672398756
-      wolfsheet5_58: 2142131548
-      wolfsheet5_18: -1635309964
-      wolfsheet5_40: -814005799
-      wolfsheet5_1: -1704106417
-      wolfsheet5_32: -83382867
-      wolfsheet5_0: 2080792026
-      wolfsheet5_60: -1369007134
-      wolfsheet5_4: 742217834
-      wolfsheet5_51: -347288499
-      wolfsheet5_59: -539061783
-      wolfsheet5_42: 1283865513
-      wolfsheet5_29: 2004315950
-      wolfsheet5_15: 46374793
-      wolfsheet5_30: 95560495
-      wolfsheet5_56: -1669686325
-      wolfsheet5_75: 281551381
-      wolfsheet5_14: -239926487
+      wolfsheet5_66: 366357570
       wolfsheet5_67: -613417908
-      wolfsheet5_46: -504749139
-      wolfsheet5_72: -2056601536
-      wolfsheet5_61: 1403952170
-      wolfsheet5_54: 2003424421
-      wolfsheet5_41: 1152434656
-      wolfsheet5_70: 512010573
-      wolfsheet5_36: 243684559
-      wolfsheet5_74: -665217722
-      wolfsheet5_71: 1149117776
-      wolfsheet5_21: 1990526788
       wolfsheet5_68: -1690883432
-      wolfsheet5_77: -1773349811
+      wolfsheet5_69: 1843856130
       wolfsheet5_7: -300030084
-      wolfsheet5_34: 2137760197
-      wolfsheet5_9: -1809997691
-      wolfsheet5_27: -387198424
-      wolfsheet5_11: 1394213205
-      wolfsheet5_20: 1913576752
-      wolfsheet5_16: -1205099847
-      wolfsheet5_13: -1656934436
-      wolfsheet5_55: -203200769
-      wolfsheet5_35: -244397595
-      wolfsheet5_3: -1557889951
+      wolfsheet5_70: 512010573
+      wolfsheet5_71: 1149117776
+      wolfsheet5_72: -2056601536
       wolfsheet5_73: 1295271349
-      wolfsheet5_25: -1936283014
+      wolfsheet5_74: -665217722
+      wolfsheet5_75: 281551381
+      wolfsheet5_76: -690776557
+      wolfsheet5_77: -1773349811
+      wolfsheet5_8: -566399970
+      wolfsheet5_9: -1809997691
   spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

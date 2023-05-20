@@ -10,7 +10,7 @@ using UnityEngine;
 [System.Serializable]
 public class AbilityCost
 {
-    [SerializeField] private List<StatCost> StatToCostMap = new List<StatCost>();
+    [SerializeField] public List<StatCost> statCosts = new List<StatCost>();
 }
 
 /*

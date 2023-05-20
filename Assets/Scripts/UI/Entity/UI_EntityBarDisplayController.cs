@@ -55,12 +55,12 @@ public class UI_EntityBarDisplayController : MonoBehaviour
         switch (barType)
         {
             case BarType.Health:
-                slider.maxValue = statsHandler.GetStats().GetStatValue(Stats.Stat.maxHealth);
-                slider.value = statsHandler.GetStats().GetStatValue(Stats.Stat.curHealth);
+                slider.maxValue = statsHandler.GetStatValue(Stats.Stat.maxHealth);
+                slider.value = statsHandler.GetStatValue(Stats.Stat.curHealth);
                 break;
             case BarType.Stamina:
-                slider.maxValue = statsHandler.GetStats().GetStatValue(Stats.Stat.maxStamina);
-                slider.value = statsHandler.GetStats().GetStatValue(Stats.Stat.curStamina);
+                slider.maxValue = statsHandler.GetStatValue(Stats.Stat.maxStamina);
+                slider.value = statsHandler.GetStatValue(Stats.Stat.curStamina);
                 break;
         }
     }

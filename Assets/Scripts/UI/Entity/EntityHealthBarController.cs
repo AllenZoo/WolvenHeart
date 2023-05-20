@@ -17,16 +17,16 @@ public class EntityHealthBarController : MonoBehaviour
 
     private void Start()
     {
-        slider.maxValue = statsHandler.GetStats().GetStatValue(Stats.Stat.maxHealth);
-        slider.value = statsHandler.GetStats().GetStatValue(Stats.Stat.curHealth);
+        slider.maxValue = statsHandler.GetStatValue(Stats.Stat.maxHealth);
+        slider.value = statsHandler.GetStatValue(Stats.Stat.curHealth);
 
         statsHandler.OnStatChange += UpdateSlider;
     }
     
     private void UpdateSlider()
     {
-        slider.maxValue = statsHandler.GetStats().GetStatValue(Stats.Stat.maxHealth);
-        slider.value = statsHandler.GetStats().GetStatValue(Stats.Stat.curHealth);
+        slider.maxValue = statsHandler.GetStatValue(Stats.Stat.maxHealth);
+        slider.value = statsHandler.GetStatValue(Stats.Stat.curHealth);
     }
 
 

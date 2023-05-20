@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: AgilityBuff_10_10
   m_EditorClassIdentifier: 
   animation: {fileID: 0}
-  name: 
+  name: Sprint
   cost:
-    StatToCostMap: []
-  cooldown: 0
+    statCosts:
+    - statType: 3
+      value: 20
+  cooldown: 10
   activeTime: 0
   castTime: 0
   isOnCooldown: 0

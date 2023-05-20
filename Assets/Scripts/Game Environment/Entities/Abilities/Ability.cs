@@ -7,12 +7,16 @@ public abstract class Ability
 {
     protected SO_Ability data;
     protected AnimationHandler aHandler;
+    protected StatsHandler sHandler;
+
     protected List<Ability> stackedAbilities;
 
     public Ability(SO_Ability data, GameObject abilityHolder)
     {
         this.data = data;
         this.aHandler = abilityHolder.GetComponent<AnimationHandler>();
+        this.sHandler = abilityHolder.GetComponent<StatsHandler>();
+
         stackedAbilities = new List<Ability>();
 
         foreach (SO_Ability so_ability in data.stackedAbilities)
@@ -27,6 +31,7 @@ public abstract class Ability
     {
         if (VerifyConstraints())
         {
+            SpendAbilityCost();
             Activate();
             abilityHolder.StartCoroutine(StartCooldown());
 
@@ -49,6 +54,13 @@ public abstract class Ability
         }
     }
 
+    public void Trigger(AbilityHandler abilityHolder, bool isContinuous)
+    {
+        Trigger(abilityHolder);
+        throw new NotImplementedException();
+    }
+
+
     // The actual implementation of the ability
     protected abstract void Activate();
 
@@ -56,22 +68,69 @@ public abstract class Ability
     protected IEnumerator StartCooldown()
     {
         data.isOnCooldown = true;
-        Debug.Log("Starting cooldown!");
+        Debug.Log("Starting cooldown for " + data.name);
         yield return new WaitForSeconds(data.cooldown);
-        Debug.Log("Cooldown finished!");
+        Debug.Log("Cooldown finished for " + data.name);
         data.isOnCooldown = false;
     }
 
     // Verifies if the ability can be activated
     // Currently only checks stat constrains
-    // TODO: Add constraints for environment + cost constraints
+    // TODO: Add constraints for environment
     protected bool VerifyConstraints()
     {
-        Debug.Log("Is off cd: " + !data.isOnCooldown);
-        return !data.isOnCooldown;
+        // Debug.Log("Is off cd: " + !data.isOnCooldown);
+
+        // Check if the ability is on cooldown and if the entity can pay the cost
+        if (data.isOnCooldown || !VerifyAbilityCost())
+        {
+            return false;
+        }
+
+        return true;
     }
 
+    // Checks if the entity can pay the cost of the ability
+    protected bool VerifyAbilityCost()
+    {
+        AbilityCost abilityCost = data.cost;
 
+        foreach (StatCost statCost in abilityCost.statCosts)
+        {
+            if (!VerifyStatCost(statCost))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Checks if the entity can pay a stat cost
+    protected bool VerifyStatCost(StatCost statCost)
+    {
+        if (sHandler.GetStatValue(statCost.statType) < statCost.value)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    // Spends the cost of the ability
+    protected void SpendAbilityCost()
+    {
+        AbilityCost abilityCost = data.cost;
+        foreach (StatCost statCost in abilityCost.statCosts)
+        {
+            SpendStatCost(statCost);
+        }
+    }
+
+    // Spends a stat cost
+    protected void SpendStatCost(StatCost statCost)
+    {
+        sHandler.DecreaseStat(statCost.statType, statCost.value);
+    }
 }
 
 [Serializable]

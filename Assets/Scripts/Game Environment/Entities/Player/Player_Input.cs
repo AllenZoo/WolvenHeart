@@ -46,6 +46,7 @@ public class Player_Input : MonoBehaviour
 
     /// <summary>
     /// Handles ability inputs.
+    /// Keys: J, K, L, U, I, O
     /// </summary>
     private void HandleAbilityInput()
     {
@@ -58,10 +59,10 @@ public class Player_Input : MonoBehaviour
             OnRequestAbility?.Invoke(KeyCode.K);
         } else if (Input.GetKeyDown(KeyCode.J))
         {
-            OnRequestAbility.Invoke(KeyCode.J);
+            OnRequestAbility?.Invoke(KeyCode.J);
         } else if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            OnRequestAbility.Invoke(KeyCode.LeftShift);
+            OnRequestAbility?.Invoke(KeyCode.LeftShift);
         }
 
         // Key Up
@@ -73,10 +74,10 @@ public class Player_Input : MonoBehaviour
             OnReleaseAbility?.Invoke(KeyCode.K);
         } else if (Input.GetKeyUp(KeyCode.J))
         {
-            OnReleaseAbility.Invoke(KeyCode.J);
+            OnReleaseAbility?.Invoke(KeyCode.J);
         } else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            OnReleaseAbility.Invoke(KeyCode.LeftShift);
+            OnReleaseAbility?.Invoke(KeyCode.LeftShift);
         }
     }
 

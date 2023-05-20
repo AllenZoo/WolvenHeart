@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animation: {fileID: 0}
   name: ENRAGEEEEE
-  cost: 0
-  cooldown: 2
+  cost:
+    statCosts: []
+  cooldown: 10
   activeTime: 1
   castTime: 0
   isOnCooldown: 0
@@ -24,4 +25,5 @@ MonoBehaviour:
   stackedAbilities: []
   statType: 4
   amount: 10
+  isDurationBased: 0
   duration: 10

@@ -14,18 +14,38 @@ public abstract class StatsHandler : MonoBehaviour
         curStats.Copy(defaultStats);
     }
 
-    public Stats GetStats() {
-        return curStats;
+    public float GetStatValue(Stats.Stat statType)
+    {
+        return curStats.GetStatValue(statType);
     }
 
     public void BuffStat(Stats.Stat stat, float amount, float duration)
     {
-        throw new NotImplementedException();
+        StartCoroutine(BuffStatCoroutine(stat, amount, duration));
     }
+
+    protected IEnumerator BuffStatCoroutine(Stats.Stat stat, float amount, float duration)
+    {
+        // Buff the stat for the duration
+        IncreaseStat(stat, amount);
+        yield return new WaitForSeconds(duration);
+        DecreaseStat(stat, amount);
+
+    }
+
     public  void DeBuffStat(Stats.Stat stat, float amount, float duration)
     {
-        throw new NotImplementedException();
+        StartCoroutine(DeBuffStatCoroutine(stat, amount, duration));
     }
+
+    protected IEnumerator DeBuffStatCoroutine(Stats.Stat stat, float amount, float duration)
+    {
+        // Debuff the stat for the duration
+        DecreaseStat(stat, amount);
+        yield return new WaitForSeconds(duration);
+        IncreaseStat(stat, amount);
+    }
+
     public void DecreaseStat(Stats.Stat stat, float amount)
     {
         curStats.SubtractToStatValue(stat, amount);

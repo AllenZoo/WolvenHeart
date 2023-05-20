@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 6059872464949015145}
   - component: {fileID: 6059872464949015144}
   - component: {fileID: 5463905139192811406}
+  - component: {fileID: 2813382246289318603}
   m_Layer: 0
   m_Name: TargetDummy
   m_TagString: Untagged
@@ -500,3 +501,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curStats: {fileID: 11400000, guid: f400934c56333514c98ce28ea614fa5a, type: 2}
   defaultStats: {fileID: 11400000, guid: 38fc87815350d8e41a60e000658826d9, type: 2}
+--- !u!114 &2813382246289318603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6059872464949015146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0151a6f31ccc274583ee0670d0e1cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

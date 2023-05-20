@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class UI_EntityHealthBarController : MonoBehaviour
+public class EntityHealthBarController : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private StatsHandler statsHandler;

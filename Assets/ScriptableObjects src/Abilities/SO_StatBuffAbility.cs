@@ -7,6 +7,8 @@ public class SO_StatBuffAbility : SO_Ability
 {
     public Stats.Stat statType;
     public float amount;
+
+    public bool isDurationBased;
     public float duration;
 
     public override Ability GenerateAbilityRef(GameObject abilityHolder)

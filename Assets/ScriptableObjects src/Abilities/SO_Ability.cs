@@ -9,7 +9,7 @@ public abstract class SO_Ability : ScriptableObject
 {
     public AnimationClip animation;
     public new string name;
-    public float cost;
+    [SerializeField] public AbilityCost cost;
     public float cooldown;
     public float activeTime;
     public float castTime;

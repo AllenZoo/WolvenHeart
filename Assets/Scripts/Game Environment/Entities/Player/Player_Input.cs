@@ -13,6 +13,7 @@ public class Player_Input : MonoBehaviour
     public event Action OnRequestInteract;
 
     public event Action<KeyCode> OnRequestAbility;
+    public event Action<KeyCode> OnReleaseAbility;
 
     /* -------------------------------------------------------------------------- */
     /*                                CALL UPDATES                                */
@@ -48,6 +49,7 @@ public class Player_Input : MonoBehaviour
     /// </summary>
     private void HandleAbilityInput()
     {
+        // Key Down
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnRequestAbility?.Invoke(KeyCode.Space);
@@ -57,6 +59,24 @@ public class Player_Input : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.J))
         {
             OnRequestAbility.Invoke(KeyCode.J);
+        } else if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            OnRequestAbility.Invoke(KeyCode.LeftShift);
+        }
+
+        // Key Up
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            OnReleaseAbility?.Invoke(KeyCode.Space);
+        } else if (Input.GetKeyUp(KeyCode.K))
+        {
+            OnReleaseAbility?.Invoke(KeyCode.K);
+        } else if (Input.GetKeyUp(KeyCode.J))
+        {
+            OnReleaseAbility.Invoke(KeyCode.J);
+        } else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            OnReleaseAbility.Invoke(KeyCode.LeftShift);
         }
     }
 

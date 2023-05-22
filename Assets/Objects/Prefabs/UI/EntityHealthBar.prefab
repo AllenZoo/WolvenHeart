@@ -297,7 +297,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7640400472868623481}
   - component: {fileID: 7640400472868623478}
-  - component: {fileID: 7640400472868623479}
   - component: {fileID: 7640400472868623480}
   m_Layer: 0
   m_Name: EntityHealthBar
@@ -380,21 +379,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7640400472868623479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7640400472868623482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1.43, y: -0.45}
-  m_UseGraphicAlpha: 1
 --- !u!114 &7640400472868623480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,5 +394,5 @@ MonoBehaviour:
   slider: {fileID: 0}
   statsHandler: {fileID: 0}
   barType: 0
-  displayTextValues: 0
+  shouldDisplayTextValues: 1
   textDisplay: {fileID: 27487088}

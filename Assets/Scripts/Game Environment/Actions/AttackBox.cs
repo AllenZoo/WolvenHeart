@@ -9,19 +9,18 @@ public class AttackBox : MonoBehaviour
 
     // TODO: Add attack modifiers
     // [SerializeField] List<AttackModifiers> modifiers;
-
-
 }
 
 public enum TargetType
 {
     Player,
-    Enemy
+    Enemy,
+    Neutral,
 }
 
 public enum AttackType
 {
     Burst,
     ContinuousImpact,
-    DOT,
+    DOT
 }

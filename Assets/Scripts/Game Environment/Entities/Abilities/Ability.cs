@@ -25,7 +25,7 @@ public abstract class Ability
         }
     }
 
-    // Triggerrs the request to start the process of activating the ability
+    // Triggers the request to start the process of activating the ability
     // Will check the constraints of the ability before activating it
     public void Trigger(AbilityHandler abilityHolder)
     {
@@ -79,8 +79,6 @@ public abstract class Ability
     // TODO: Add constraints for environment
     protected bool VerifyConstraints()
     {
-        // Debug.Log("Is off cd: " + !data.isOnCooldown);
-
         // Check if the ability is on cooldown and if the entity can pay the cost
         if (data.isOnCooldown || !VerifyAbilityCost())
         {

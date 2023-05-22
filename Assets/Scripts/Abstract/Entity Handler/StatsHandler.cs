@@ -51,6 +51,7 @@ public abstract class StatsHandler : MonoBehaviour
         curStats.SubtractToStatValue(stat, amount);
         OnStatChange?.Invoke();
     }
+
     public void IncreaseStat(Stats.Stat stat, float amount)
     {
         curStats.AddToStatValue(stat, amount);

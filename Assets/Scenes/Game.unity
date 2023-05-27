@@ -17198,6 +17198,10 @@ PrefabInstance:
       propertyPath: defaultStats
       value: 
       objectReference: {fileID: 11400000, guid: e2fbc7899a2d741abb42a6ba865ca6ee, type: 2}
+    - target: {fileID: 4083589566035056609, guid: c53c01292735d7c45b517ef2c017967b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 881c5252bf9240e4ca93ad2859ee9341, type: 2}
     - target: {fileID: 4083589566035056614, guid: c53c01292735d7c45b517ef2c017967b, type: 3}
       propertyPath: m_RootOrder
       value: 7
